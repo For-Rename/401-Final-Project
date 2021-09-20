@@ -25,6 +25,4 @@ A Human resource management system website.
 2- Name of Project: White hands
 As many cancer patients misses their chemotherapy sessions due to lack of social supporting, so this project is to donate your free time to help out and support those patients
 
-White hands
-
 MVP ? Time volunteering for social supporting of cancer patients who are missing chemotherapy sessions
