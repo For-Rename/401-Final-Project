@@ -35,7 +35,7 @@
 ## **Conflict Plan:**
 
 - **What will be your group’s process to resolve conflict, when it arises?**
-  - By trying to figure out what is the source of the conflict and then tracking it to a good solution
+  - By trying to figure out what is the source of the conflict and then tracking it to a good solution,if its out of control we will refer for team instructor.
 - **What will your team do if one person is taking over the project and not letting the other members contribute?**
   - Will contact the team leader and speak up without hesitating.
 - **How will you approach each other and the challenges of the project knowing that it is impossible for all members to be at the exact same place in understanding and skill level?**
@@ -43,7 +43,8 @@
 - **How will you raise concerns to members who are not adequately contributing?**
   - By trying to assign tasks to them and restricting them with specific deadlines if not responded make a private chat with him to participate if didn't work try to reach out the instructor.
 - **How and when will you escalate the conflict if your resolution attempts are unsuccessful?**
-  - When all the attempts for resolving it are failing and the consequences of this conflict is affecting the workflow by making a clear announcement about it .
+  - When all the attempts for resolving it are failing and the consequences of this conflict is affecting the workflow by making a clear announcement about it ,
+  If we didn’t have any solution, we will have help from the course instructor as the final step of the conflict solution.
 
 ## **Communication Plan:**
 
