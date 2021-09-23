@@ -52,6 +52,18 @@
 
 # Functional requirements:
 
+**An Admin can**: 
+- Create a user
+- approve/reject the leave request 
+- Modify and view all employees profile & data 
+- Show the options for all employees reports
+- Save any data changes.
+
+**A User can**:
+- Create and modify his own data
+- Can check in & check out
+- Can track his own request and check the application process
+
 ## Data Flow
 
 ![Data Flow](assets/workflow.png)
