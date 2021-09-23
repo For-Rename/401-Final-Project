@@ -50,6 +50,11 @@
 
 - Job Search by non employee user .
 
+# Functional requirements:
+
+## Data Flow
+
+![Data Flow](assets/workflow.png)
 
 # Non- Functional requirements:
 
