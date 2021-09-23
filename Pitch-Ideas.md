@@ -18,6 +18,14 @@
 
 3-**MVP** :  
 
+- User login feature.
+
+- Non-administrative User Reports Feature.
+
+- Non-administrative User Attendance Feature.
+
+- Non-administrative User Leaves and Vacation request Feature.
+
 
 2- **Name of Project**: Profok (booking professional)
 
