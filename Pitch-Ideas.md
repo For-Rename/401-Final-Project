@@ -16,7 +16,15 @@
 1-**Name** : A Human resource management system website.
 2- **Description** : A human resource management system that helps employees starting their journey and deal with their HR processes to end with A paperless human resource system.
 
-3-**MVP** : Searching Job Feature, Applying for Job Feature , User registration feature, Job Posting Feature.
+3-**MVP** :  
+
+- User login feature.
+
+- Non-administrative User Reports Feature.
+
+- Non-administrative User Attendance Feature.
+
+- Non-administrative User Leaves and Vacation request Feature.
 
 
 2- **Name of Project**: Profok (booking professional)
