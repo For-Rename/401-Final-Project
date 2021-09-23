@@ -9,12 +9,20 @@
 
 ## Project Description
 
+A human resource management system that helps employees starting their journey and deal with their HR processes to end with A paperless human resource system.
+
 ## Name of project
+
+    HRBoost
 
 ## PM Tools
 
+[PM](https://github.com/orgs/Next-Reme/projects/1)
+
 ## Domain Modeling
 
-![Domain Modeling](Modeling.jpg)
+![Domain Modeling](assets/Modeling.jpg)
 
-[PM](https://github.com/orgs/Next-Reme/projects/1)
+## Database Schema Diagram
+
+![ERD](assets/HR-ERD.jpg)
