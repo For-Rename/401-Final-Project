@@ -19,6 +19,12 @@ A human resource management system that helps employees starting their journey a
 
 [PM](https://github.com/orgs/Next-Reme/projects/1)
 
+## wireframes
+
+![wireframe-1](assets/wireframe-1.png)
+![wireframe-2](assets/wireframe-2.png)
+![wireframe-3](assets/wireframe-3.png)
+
 ## Domain Modeling
 
 ![Domain Modeling](assets/Modeling.jpg)
