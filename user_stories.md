@@ -44,7 +44,7 @@
 
 ### Acceptance Tests
 
-    -  Ensure that the logged user will be authenticated with the correct user profile and be able to see his status.
+-  Ensure that the logged user will be authenticated with the correct user profile and be able to see his status.
 
 ## Employee onboarding process
 
@@ -65,10 +65,10 @@
 
 ### Feature Tasks
 
-    - As an employee must log in first in order to check-in/check out
-    - As an employee I need to press a button in order to check-in/out. 
-    -  Save any interaction that could be modified. 
+- As an employee must log in first in order to check-in/check out
+- As an employee I need to press a button in order to check-in/out. 
+-  Save any interaction that could be modified. 
 
 ### Acceptance Tests
 
-    - Ensure that the logged employee will be able to have access only to his page and perform this process.
+- Ensure that the logged employee will be able to have access only to his page and perform this process.
