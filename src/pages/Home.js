@@ -1,15 +1,13 @@
 // import { Link } from "@chakra-ui/layout";
-import BasicStatistics from "../components/Statistics";
+import Statistics from "../components/Statistics";
 function Home(){
 
     return (
       <>
       
-         <p>
-         Welcome Back Haya !
-         
-         </p>
-         <BasicStatistics></BasicStatistics>
+        
+         <Statistics></Statistics>
+         <Blog></Blog>
    
        </>
     );

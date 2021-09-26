@@ -8,12 +8,12 @@ import SidebarWithHeader from './components/SideBar';
 import Footer from './components/Footer'
 
 import Home from './pages/Home';
-
+import { Box } from '@chakra-ui/layout';
 import Profile from "./pages/Profile"
 
 function App() {
   return (
-    <div className="App">
+    <Box>
       <Router>
 
 
@@ -26,15 +26,17 @@ function App() {
               <Profile />
             </Route>
           </Switch>
+          <Box >
           <Footer></Footer>
+          </Box>
         </SidebarWithHeader>
 
 
       </Router>
 
 
-
-    </div>
+      </Box>
+  
   );
 }
 

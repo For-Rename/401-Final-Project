@@ -56,15 +56,15 @@ import {
   export default function Footer() {
     return (
       <Box
-        bg={useColorModeValue('gray.50', 'gray.900')}
-        color={useColorModeValue('gray.700', 'gray.200')}>
+        bg={useColorModeValue('#14213d')}
+        color={useColorModeValue('white', 'gray.200')}>
         <Container as={Stack} maxW={'6xl'} py={10}>
           <SimpleGrid
             templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 2fr' }}
             spacing={8}>
-            <Stack spacing={6}>
-              <Box>
-              <Avatar size = { 'xl'} src = {hrmact} bg={'none'}/>
+            <Stack margin={4}>
+              <Box >
+              <Avatar size = { '2xl'} src = {hrmact} bg={'grey.500'}/>
               </Box>
               <Text fontSize={'sm'}>
                 © 2021 HRM-ACT. All rights reserved
@@ -92,7 +92,9 @@ import {
               <ListHeader>Support</ListHeader>
            
               <Link href={'#'}>Terms of Service</Link>
-            
+              {/* <Link href={'#'}>Legal</Link>
+              <Link href={'#'}>Privacy Policy</Link>
+              <Link href={'#'}>Satus</Link> */}
             </Stack>
             <Stack align={'flex-start'}>
               <ListHeader>Stay up to date</ListHeader>
