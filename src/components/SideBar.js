@@ -20,6 +20,9 @@ import {
     MenuDivider,
     MenuItem,
     MenuList,
+    FormControl,
+    Switch,
+    FormLabel
 } from '@chakra-ui/react';
 import {
     FiHome,
@@ -153,6 +156,12 @@ const MobileNav = ({ onOpen, ...rest }) => {
             borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
             justifyContent={{ base: 'space-between', md: 'flex-end' }}
             {...rest}>
+            <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="email-alerts" mb="0">
+                    Enable Notifications?
+                </FormLabel>
+                <Switch id="email-alerts" />
+            </FormControl>
             <IconButton
                 display={{ base: 'flex', md: 'none' }}
                 onClick={onOpen}
@@ -161,23 +170,23 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 icon={<FiMenu />}
             />
 
-            <Text
-                display={{ base: 'flex', md: 'none' }}
-                fontSize="2xl"
+            {/* <Text
+
+                fontSize="l"
                 fontFamily="monospace"
                 fontWeight="bold">
-                Logo
-            </Text>
+                Hello, Haya !
+            </Text> */}
 
 
             <HStack spacing={{ base: '2', md: '6' }}>
-                <Text
-                    display={{ base: 'flex', md: 'none' }}
-                    fontSize="2xl"
+                {/* <Text
+                   
+                    fontSize="xl"
                     fontFamily="monospace"
                     fontWeight="bold">
                     Hello Haya
-                </Text>
+                </Text> */}
                 <IconButton
                     size="lg"
                     variant="ghost"

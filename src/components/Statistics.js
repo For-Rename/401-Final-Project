@@ -26,7 +26,7 @@ export default function Statistics() {
                 Your Most Recent Updates !
             </chakra.h1>
             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 1, lg: 8 }}>
-                <Stat bg={'#efd3bb'} textAlign={'center'} margin ={10} padding={1}>
+                <Stat  borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin ={10} padding={1}>
                     <StatLabel>Performance</StatLabel>
                     <StatNumber>70%</StatNumber>
                     <StatHelpText >
@@ -34,7 +34,7 @@ export default function Statistics() {
                         10.12%
                     </StatHelpText>
                 </Stat>
-                <Stat bg={'#efd3bb'} textAlign={'center'} margin ={10}>
+                <Stat  borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin ={10} padding={1}>
                     <StatLabel>Vacations</StatLabel>
                     <StatNumber>10 Days</StatNumber>
                     <StatHelpText>
@@ -42,7 +42,7 @@ export default function Statistics() {
                         20%
                     </StatHelpText>
                 </Stat>
-                <Stat bg={'#efd3bb'} textAlign={'center'} margin ={10}>
+                <Stat  borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin ={10} padding={1}>
                     <StatLabel>Leaves</StatLabel>
                     <StatNumber>3 Hours</StatNumber>
                     <StatHelpText>
