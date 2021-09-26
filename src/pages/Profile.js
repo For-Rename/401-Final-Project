@@ -1,4 +1,4 @@
-import { Link } from "@chakra-ui/layout";
+// import { Link } from "@chakra-ui/layout";
 
 function Profile(){
 
