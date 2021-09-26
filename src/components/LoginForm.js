@@ -1,5 +1,5 @@
 
-import './log.css'
+import './loginForm.css'
 export default function Login() {
 
     return (
@@ -23,3 +23,4 @@ export default function Login() {
         </>
     )
 }
+

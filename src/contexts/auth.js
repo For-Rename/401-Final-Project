@@ -1,10 +1,13 @@
 import { createContext, useContext, useState } from 'react';
 import jwt from 'jsonwebtoken';
 import axios from 'axios'
-const tokenUrl ='http://cookie-stand-api-10.herokuapp.com/api/token/';
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+const tokenUrl = baseUrl + '/api/token/';
+
 const AuthContext = createContext();
 
 export function useAuth() {
+    
     const auth = useContext(AuthContext);
     if (!auth) throw new Error('You forgot AuthProvider!');
     return auth;
@@ -18,7 +21,7 @@ export function AuthProvider(props) {
         login,
         logout,
     });
-
+    
     async function login(username, password) {
 
         const response = await axios.post(tokenUrl, { username, password });
@@ -33,7 +36,7 @@ export function AuthProvider(props) {
                 id: decodedAccess.user_id
             },
         }
-
+       
         setState(prevState => ({ ...prevState, ...newState }));
     }
 
