@@ -44,7 +44,7 @@ const LinkItems = [
   { name: "Home", icon: FiHome, href: "/" },
   { name: "Performance", icon: FiTrendingUp },
   { name: "My Team", icon: FiCompass },
-  { name: "Leaves", icon: FiBriefcase },
+  { name: "Leaves", icon: FiBriefcase , href: "/LeaveForm"},
   { name: "Attendance", icon: FiActivity, href: "/Attendance" },
   { name: "Settings", icon: FiSettings, href: "/SignUp" },
 ];

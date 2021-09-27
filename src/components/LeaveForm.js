@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import "./style_leave.css";
+import './leaveForm.css'
 
 export default function Leave() {
   const { register, handleSubmit } = useForm();
@@ -10,28 +10,28 @@ export default function Leave() {
 
   return (
     <div>
-    <h1>
+    <h2>
       Leave Form
-    </h1>
-   
+    </h2>
+    
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label>Employee First Name</label>
-      <input {...register("firstName")} placeholder="First name" />
-      <label>Employee Lasst Name</label>
-      <input {...register("lastName")} placeholder="Last name" />
-      <label>Leave Date</label>
-      <input {...register("leaveDate")} type="date"/>
-      <label>Leave Time</label>
-      <input {...register("leaveTime")} type="time"/>
-      <label>Select Your Department</label>
-      <select {...register("leaveType")} placeholder="Select Department" className="dropbtn"> 222222
+      <label className="label">Employee First Name</label>
+      <input {...register("firstName")} placeholder="First name"  className="input" />
+      <label className="label">Employee Lasst Name</label>
+      <input {...register("lastName")} placeholder="Last name"  className="input" />
+      <label className="label">Leave Date</label>
+      <input {...register("leaveDate")} type="date"  className="input"/>
+      <label className="label">Leave Time</label>
+      <input {...register("leaveTime")} type="time"  className="input"/>
+      <label className="label">Select Leave type</label>
+      <select {...register("leaveType")} placeholder="Select Department"  className="input" > 222222
         <option value="">Select Leave Type</option>
         <option value="Annual">Annual</option>
         <option value="Hourly">Hourly</option>
         <option value="Sick">Sick Leave</option>
       </select>
-      <label></label>
-      <select {...register("Department")} placeholder="Select Department" className="dropbtn"> 11111111
+      <label className="label">Select Your Department</label>
+      <select {...register("Department")} placeholder="Select Department"  className="input"> 11111111
         <option value="">Select Department</option>
         <option value="HR">HR</option>
         <option value="IT">IT</option>
@@ -42,7 +42,7 @@ export default function Leave() {
       <input type="submit" />
     </form>
 
-    <Table result= {result} />
+    {/* <Table result= {result} /> */}
     </div>
   );
 }
