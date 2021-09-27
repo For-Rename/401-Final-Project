@@ -25,10 +25,10 @@ function CDate() {
     // console.log(dt);
     const value = {
       // id: event.target.id.value,
+      id: Attendance.length + 1,
       name: "sara",
       checkin: dt,
       checkout: dt,
-      id: Attendance.length + 1,
     };
     setAttendance([...Attendance, value]);
     console.log(Attendance);
