@@ -9,7 +9,8 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import { Box } from "@chakra-ui/layout";
 import Profile from "./pages/Profile";
-
+import Attendance from "./components/Attendance/Attendance";
+import SignUp from "./components/SignUp";
 import "./App.css";
 // import Log from "./components/LoginForm";
 // import SignUp from './components/SignUp';
@@ -24,6 +25,12 @@ function App() {
             </Route>
             <Route exact path="/profile">
               <Profile />
+            </Route>
+            <Route exact path="/Attendance">
+              <Attendance />
+            </Route>
+            <Route exact path="/SignUp">
+              <SignUp />
             </Route>
           </Switch>
           <Box>
