@@ -1,24 +1,37 @@
-// import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import SidebarWithHeader from "./components/SideBar";
+import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import { Box } from "@chakra-ui/layout";
+import Profile from "./pages/Profile";
+
+import "./App.css";
+// import Log from "./components/LoginForm";
+// import SignUp from './components/SignUp';
 function App() {
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
+    <Box>
+      <Router>
+        <SidebarWithHeader>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
+            </Route>
+          </Switch>
+          <Box>
+            <Footer></Footer>
+          </Box>
+        </SidebarWithHeader>
+      </Router>
+    </Box>
   );
 }
 
