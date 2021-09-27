@@ -54,7 +54,7 @@ export default function SignUp() {
                                     <input type="text" name="address" />
                                 </div>
                                 <div class="input_field">
-                                    <input type="tel" placeholder="phone number" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"></input>
+                                    <input type="tel" placeholder="phone number" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"></input>
                                 </div>
                                 
                                 <div class="input_field radio_option">
