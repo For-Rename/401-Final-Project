@@ -170,13 +170,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 icon={<FiMenu />}
             />
 
-            {/* <Text
-
-                fontSize="l"
-                fontFamily="monospace"
-                fontWeight="bold">
-                Hello, Haya !
-            </Text> */}
+       
 
 
             <HStack spacing={{ base: '2', md: '6' }}>
