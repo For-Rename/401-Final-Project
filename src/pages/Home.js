@@ -6,6 +6,7 @@ import BlogForm from '../components/BlogForm';
 function Home(){
   const [performance,setPerformance] = useState([]);
   const [model,setModel] = useState(false);
+  const [blog,setBlog] = useState([]);
   function showingModel(){
 
    setModel(true)
@@ -14,13 +15,22 @@ function Home(){
 
     setModel(false)
    }
+  function blogInfoHandler(info){
+    // const response = await axios.post('backend_link', info);
+    // setBlog(info => [...info, response.data])
+    console.log(info);
+   }
+   async function performanceHandler(info){
+    const response = await axios.get('backend_link');
+    setPerformance(info => [...info, response.data])
+   }
     return (
       <>
       
         
-         <Statistics></Statistics>
-         <Blog showingModel={showingModel}></Blog>
-         <BlogForm model={model} hidingModel={hidingModel}></BlogForm>
+         <Statistics performance={performance}></Statistics>
+         <Blog blog = {blog}showingModel={showingModel}></Blog>
+         <BlogForm  blogInfoHandler={blogInfoHandler} model={model} hidingModel={hidingModel}></BlogForm>
    
        </>
     );

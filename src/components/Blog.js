@@ -138,10 +138,12 @@ import {
             <Card {...cardInfo} index={index} />
           ))}
         </SimpleGrid>
-        <Box>
-          {/* <Icon viewBox="0 0 40 35" mt={14} boxSize={10} color={'purple.400'}> */}
-           <Button onClick = {()=>props.showingModel()}>Add your own post</Button>
-          {/* </Icon> */}
+        <Box margin={5}>
+          
+           <Button 
+            colorScheme={'messenger'}
+           onClick = {()=>props.showingModel()}>Add your own post</Button>
+    
         </Box>
       </Flex>
     );
