@@ -1,6 +1,6 @@
 # User stories
 
-## ## HR control employee's data
+## HR control employee's data
 
 - As an HR (administrative), I want to be able to modify and view all employee’s data.
 
@@ -14,9 +14,7 @@
 
 ### Acceptance Tests
 
-- Ensure that the employee approved by HR has access only to his/her data.
-
-- Ensure that the data are successfully saved into the database
+ - GIVEN employee  WHEN logged in THEN Ensure that the employee approved by HR has access only to his/her data and it's successfully saved into the database.
 
 ## Modify data as an employee
 
@@ -30,21 +28,21 @@
 
 ### Acceptance Tests
 
-- Ensure that the logged employee will be authenticated with the correct user profile.
-- Ensure that the requests made are successfully saved into the database.
+- GIVEN employee  WHEN logged in THEN the requests made are successfully saved into the database.
+
 
 ## User tracking requests
 
-- As a user, I want to be able to track my requests and check my application process 
+- As an employee, I want to be able to track my requests and check my application process.
 
 ### Feature Tasks
 
-- as an authenticated user must log in first in order to check his application status
+- as an authenticated employee must log in first in order to check his application status
 - Save any request created.
 
 ### Acceptance Tests
 
-- Ensure that the logged user will be authenticated with the correct user profile and be able to see his status.
+- GIVEN logged an employee WHEN logged in THEN authenticated with the correct user profile and be able to see his/her status.
 
 ## Employee onboarding process
 
@@ -57,7 +55,8 @@
 
 ### Acceptance Tests
 
-- Ensure that the logged employee will be able to have access to only his team pages and information.
+ - GIVEN employee WHEN logged in THEN have access only to his/her team pages and information.
+
 
 ## Check in/out
 
@@ -67,8 +66,7 @@
 
 - As an employee must log in first in order to check in/check out
 - As an employee, I need to press a button in order to check in/out.
--  Save any interaction that could be modified.
+- Save any interaction that could be modified. 
 
 ### Acceptance Tests
-
-- Ensure that the logged employee will be able to have access only to his page and perform this process.
+ - GIVEN employee  WHEN  logged in THEN have access only to his/her page and perform this process.
