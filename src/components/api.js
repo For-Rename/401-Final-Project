@@ -17,7 +17,17 @@ export class Attendances {
     return new Attendances(info);
   }
 }
+// export async function getToken(values) {
+//   const url = "https://hrboost-back.herokuapp.com/api/token/";
 
+//   const response = await axios.post(url, values);
+
+//   const refreshUrl = "https://hrboost-back.herokuapp.com/api/token/refresh";
+
+//   const refreshResponse = await axios.post(refreshUrl, { refresh: response.data.refresh });
+
+//   return refreshResponse.data.access;
+// }
 export async function fetchAttendance(url, token) {
   const config = makeConfig(token);
   const response = await axios.get(url, config);

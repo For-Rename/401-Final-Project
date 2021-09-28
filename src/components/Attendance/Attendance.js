@@ -2,21 +2,20 @@ import { useState, useEffect } from "react";
 import useSWR from "swr";
 import Table from "./Table";
 import { Box } from "@chakra-ui/react";
-import { Attendances, postAttendance, fetchAttendance, apiUrl } from "../api";
-function CDate(props) {
-  // const dt = null;
+import { Attendances, postAttendance, fetchAttendance, apiUrl, setAttendance } from "../api";
+export default function CDate({ token}) {  // const dt = null;
   // const [cdate,setDate] = useState(dt);
   // const handelDate = () =>{
   //   let dt = new Date().toLocaleString();
   //   setDate(dt);
   const { data, error, mutate } = useSWR(
-    [apiUrl, props.token],
+    [apiUrl, token],
     fetchAttendance
   );
   const [Attendance, setAttendance] = useState([]);
   useEffect(() => {
     if (!data) return;
-    Attendances(data);
+    Attendance(data);
   }, [data]);
   if (error) return <h2>Error while fetching Attendances</h2>;
   if (!data) return <h2>Loading...</h2>;
@@ -28,17 +27,31 @@ function CDate(props) {
     const value = {
       // id: event.target.id.value,
       id: Attendance.length + 1,
-      name: "sara",
+      user_id: "sara",
       checkin: dt,
       checkout: dt,
-    };
-    // setAttendance([...Attendance, value]);
-    // console.log(Attendance);
+
+      // const newValue = Attendances.fromValues(values);
+
+
+      // newValue.name += '...';
+
+
+      // const updatevalue = [newValue, ...att]
+
+      // mutate(updatevalue, false);
+
+      // await postWithToken(token, values);
+
+      // mutate();
+    }
+    setAttendance([...Attendance, value]);
+    console.log(Attendance);
     const newrecord = Attendances.fromValues(value);
     newrecord.name += "..."; // Add the ... to show loading state
     const updatedAttendance = [newrecord, ...Attendance];
     mutate(updatedAttendance, false);
-    await postAttendance(props.token, value);
+    await postAttendance(token, value);
     mutate();
   }
   // function submitHandler(event) {
@@ -62,6 +75,5 @@ function CDate(props) {
       <Table Attendance={Attendance} setAttendance={setAttendance} />
     </Box>
   );
-}
-export default CDate;
+  }
 
