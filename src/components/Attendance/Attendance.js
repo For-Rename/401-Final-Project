@@ -3,7 +3,12 @@ import useSWR from "swr";
 import Table from "./Table";
 import { Box } from "@chakra-ui/react";
 import { Attendances, postAttendance, fetchAttendance, apiUrl, setAttendance } from "../api";
+import { useAuth } from "../../contexts/auth";
+
 export default function CDate({ token}) {  // const dt = null;
+  const {user}=useAuth()
+  console.log(user.id);
+
   // const [cdate,setDate] = useState(dt);
   // const handelDate = () =>{
   //   let dt = new Date().toLocaleString();
@@ -27,9 +32,9 @@ export default function CDate({ token}) {  // const dt = null;
     const value = {
       // id: event.target.id.value,
       id: Attendance.length + 1,
-      user_id: "sara",
-      checkin: dt,
-      checkout: dt,
+      user_id:user.id,
+      check_in: dt,
+      check_out: dt,
 
       // const newValue = Attendances.fromValues(values);
 
@@ -68,6 +73,7 @@ export default function CDate({ token}) {  // const dt = null;
   //   setAttendance([...Attendance, value]);
   //   console.log(Attendance);
   // }
+
   return (
     <Box maxW="7xl" mx={"auto"} pt={10} px={{ base: 2, sm: 12, md: 17 }}>
       {/* <h3>{Attendance.map(Attendance => <div>{Attendance.name}</div>)}</h3> */}
