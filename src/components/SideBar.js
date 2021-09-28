@@ -44,7 +44,7 @@ const LinkItems = [
   { name: "Home", icon: FiHome, href: "/" },
   { name: "Performance", icon: FiTrendingUp },
   { name: "My Team", icon: FiCompass },
-  { name: "Leaves", icon: FiBriefcase },
+  { name: "Leaves", icon: FiBriefcase , href: "/LeaveForm"},
   { name: "Attendance", icon: FiActivity, href: "/Attendance" },
   { name: "Settings", icon: FiSettings, href: "/SignUp" },
 ];
@@ -138,39 +138,41 @@ const NavItem = ({ icon, children, to, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
-  return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 4 }}
-      height="20"
-      alignItems="center"
-      bg={useColorModeValue("white", "gray.900")}
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
-      justifyContent={{ base: "space-between", md: "flex-end" }}
-      {...rest}
-    >
-      <FormControl display="flex" alignItems="center">
-        <FormLabel htmlFor="email-alerts" mb="0">
-          Enable Notifications?
-        </FormLabel>
-        <Switch id="email-alerts" />
-      </FormControl>
-      <IconButton
-        display={{ base: "flex", md: "none" }}
-        onClick={onOpen}
-        variant="outline"
-        aria-label="open menu"
-        icon={<FiMenu />}
-      />
 
-      {/* <Text
 
-                fontSize="l"
-                fontFamily="monospace"
-                fontWeight="bold">
-                Hello, Haya !
-            </Text> */}
+    const out = ()=>{
+        localStorage.clear();
+        window.location.reload();
+    } 
+
+
+    return (
+        <Flex
+            ml={{ base: 0, md: 60 }}
+            px={{ base: 4, md: 4 }}
+            height="20"
+            alignItems="center"
+            bg={useColorModeValue('white', 'gray.900')}
+            borderBottomWidth="1px"
+            borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
+            justifyContent={{ base: 'space-between', md: 'flex-end' }}
+            {...rest}>
+            <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="email-alerts" mb="0">
+                    Enable Notifications?
+                </FormLabel>
+                <Switch id="email-alerts" />
+            </FormControl>
+            <IconButton
+                display={{ base: 'flex', md: 'none' }}
+                onClick={onOpen}
+                variant="outline"
+                aria-label="open menu"
+                icon={<FiMenu />}
+            />
+
+       
+
 
       <HStack spacing={{ base: "2", md: "6" }}>
         {/* <Text
@@ -223,10 +225,12 @@ const MobileNav = ({ onOpen, ...rest }) => {
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
 
-              <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
-            </MenuList>
-          </Menu>
+
+                            <MenuDivider />
+                            <MenuItem onClick={out} > Sign out</MenuItem>
+                        </MenuList>
+                    </Menu>
+
         </Flex>
       </HStack>
     </Flex>

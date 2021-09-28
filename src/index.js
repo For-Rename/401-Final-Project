@@ -1,19 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import LoginForm from "./components/LoginForm";
 import reportWebVitals from "./reportWebVitals";
 
 import { AuthProvider } from "./contexts/auth";
 
-import { ChakraProvider } from "@chakra-ui/react";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <ChakraProvider>
-        <App />
-      </ChakraProvider>
+     
+        <LoginForm />
+    
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
