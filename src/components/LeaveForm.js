@@ -9,19 +9,37 @@ export default function Leave() {
   const [result, setResult] = useState("");
   const [users] = useUsers();
   const onSubmit = (result) => {
-    axios.post("http://127.0.0.1:8000/api/hrboost/vacations/",{
+    const id = localStorage.getItem('rememberMe')
+
+  
+    const obj = {
       applied_date: result.start_date,
-      start_date: "2019-10-19T00:00:00Z",
-      end_date: "2019-10-19T00:00:00Z",
+      start_date: "2021-09-26",
+      end_date: "2021-09-27",
+      start_time:'12:00:00',
+      end_time: "12:00:00",
       description: result.description,
       status: false,
       vacation_type: result.leaveType,
-      user_id: "1"
-  }).then(
+      user_id: id
+  }
+
+  function config() {
+    const tokensAccess = localStorage.getItem('tokens')
+    console.log('tokensAccess',tokensAccess);
+
+    return {
+        headers: {
+            'Authorization': 'Bearer ' + tokensAccess
+        }
+    }
+}
+    axios.post(`http://127.0.0.1:8000/api/hrboost/vacations/`,obj,config()).then(
       res => {console.log(res)} 
       
     ).catch(error => console.log(error)) 
   }
+
 
   return (
     <div>
