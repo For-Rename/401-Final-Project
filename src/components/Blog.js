@@ -44,7 +44,7 @@ import {
 
   
   function Card(props) {
-    const { name, role, content, avatar } = props;
+    // const { name, role, content, avatar } = props;
     return (
       <Flex
         boxShadow={'lg'}
@@ -66,21 +66,21 @@ import {
             fontWeight={'medium'}
             fontSize={'15px'}
             pb={4}>
-            {content}
+            {props.content}
           </chakra.p>
           <chakra.p fontFamily={'Work Sans'} fontWeight={'bold'} fontSize={14}>
-            {name}
+            {props.name}
             <chakra.span
               fontFamily={'Inter'}
               fontWeight={'medium'}
               color={'gray.500'}>
               {' '}
-              - {role}
+              - {props.role}
             </chakra.span>
           </chakra.p>
         </Flex>
         <Avatar
-          src={avatar}
+          src={props.avatar}
           height={'80px'}
           width={'80px'}
           alignSelf={'center'}
@@ -134,8 +134,8 @@ import {
           spacing={'20'}
           mt={16}
           mx={'auto'}>
-          {staff.map((cardInfo, index) => (
-            <Card {...cardInfo} index={index} />
+          {props.blog.map((cardInfo, index) => (
+            <Card name={cardInfo.name}  content={cardInfo.content}  avatar={cardInfo.avatar}  role={cardInfo.role}  index={index} />
           ))}
         </SimpleGrid>
         <Box margin={5}>

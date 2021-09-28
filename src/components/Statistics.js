@@ -29,21 +29,21 @@ export default function Statistics(props) {
             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 1, lg: 8 }}>
                 <Stat borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin={10} padding={1}>
                     <StatLabel>Performance</StatLabel>
-                    <StatNumber>{props.performance.evaluation}</StatNumber>
+                    <StatNumber>{props.performance.evaluation} %</StatNumber>
                     {props.perforPercentage > 0 ?
                         <StatHelpText >
                             <StatArrow type="increase" />
-                            {props.perforPercentage}
+                            {props.perforPercentage} %
                         </StatHelpText> :
                         <StatHelpText >
                             <StatArrow type="decrease" />
-                            {props.perforPercentage}
+                            {props.perforPercentage} %
                         </StatHelpText>
                     }
                 </Stat>
                 <Stat borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin={10} padding={1}>
                     <StatLabel>Vacations</StatLabel>
-                    <StatNumber>10 Days</StatNumber>
+                    <StatNumber>{props.remaining.days} Days</StatNumber>
                     <StatHelpText>
                         <StatArrow type="decrease" />
                         20%
