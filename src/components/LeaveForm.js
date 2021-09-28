@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { propTypes } from "react-flexy-table";
 import { useForm } from "react-hook-form";
 import './leaveForm.css'
 
-export default function Leave() {
+export default function Leave(props) {
   const { register, handleSubmit } = useForm();
   const [result, setResult] = useState("");
-  const onSubmit = (data) => setResult(JSON.stringify(data));
+  const onSubmit = (data) => {
+    setResult(JSON.stringify(data));
+    props.performanceHandler()
+  }
+  ;
 
 
   return (
