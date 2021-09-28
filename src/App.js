@@ -11,6 +11,7 @@ import { Box } from "@chakra-ui/layout";
 import Profile from "./pages/Profile";
 import Attendance from "./components/Attendance/Attendance";
 import SignUp from "./components/SignUp";
+import LeaveForm from './components/LeaveForm';
 import "./App.css";
 // import Log from "./components/LoginForm";
 // import SignUp from './components/SignUp';
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route exact path="/SignUp">
               <SignUp />
+            </Route>
+            <Route exact path="/LeaveForm">
+              <LeaveForm />
             </Route>
           </Switch>
           <Box>
