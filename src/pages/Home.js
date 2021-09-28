@@ -1,10 +1,10 @@
-import React,{useEffect, useState} from 'react';
+
 import Statistics from "../components/Statistics";
 
 import Blog  from "../components/Blog"
-import axios from 'axios';
+
 import BlogForm from '../components/BlogForm';
-import { useAuth } from '../contexts/auth'
+
 
 function Home(props){
  

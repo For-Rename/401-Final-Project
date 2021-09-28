@@ -1,5 +1,5 @@
 import {
-  Modal, ModalContent, ModalCloseButton, ModalBody, ModalHeader, Button, Checkbox,
+  Modal, ModalContent, ModalCloseButton, ModalBody, ModalHeader, Button,
   Flex,
   FormControl,
   FormLabel,

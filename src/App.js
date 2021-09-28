@@ -11,7 +11,7 @@ import { Box } from "@chakra-ui/layout";
 import Profile from "./pages/Profile";
 
 import LoginForm from './components/LoginForm'
-
+import axios from 'axios';
 import Attendance from "./components/Attendance/Attendance";
 import SignUp from "./components/SignUp";
 import LeaveForm from './components/LeaveForm';
