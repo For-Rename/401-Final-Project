@@ -138,39 +138,34 @@ const NavItem = ({ icon, children, to, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
-  return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 4 }}
-      height="20"
-      alignItems="center"
-      bg={useColorModeValue("white", "gray.900")}
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
-      justifyContent={{ base: "space-between", md: "flex-end" }}
-      {...rest}
-    >
-      <FormControl display="flex" alignItems="center">
-        <FormLabel htmlFor="email-alerts" mb="0">
-          Enable Notifications?
-        </FormLabel>
-        <Switch id="email-alerts" />
-      </FormControl>
-      <IconButton
-        display={{ base: "flex", md: "none" }}
-        onClick={onOpen}
-        variant="outline"
-        aria-label="open menu"
-        icon={<FiMenu />}
-      />
 
-      {/* <Text
+    return (
+        <Flex
+            ml={{ base: 0, md: 60 }}
+            px={{ base: 4, md: 4 }}
+            height="20"
+            alignItems="center"
+            bg={useColorModeValue('white', 'gray.900')}
+            borderBottomWidth="1px"
+            borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
+            justifyContent={{ base: 'space-between', md: 'flex-end' }}
+            {...rest}>
+            <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="email-alerts" mb="0">
+                    Enable Notifications?
+                </FormLabel>
+                <Switch id="email-alerts" />
+            </FormControl>
+            <IconButton
+                display={{ base: 'flex', md: 'none' }}
+                onClick={onOpen}
+                variant="outline"
+                aria-label="open menu"
+                icon={<FiMenu />}
+            />
 
-                fontSize="l"
-                fontFamily="monospace"
-                fontWeight="bold">
-                Hello, Haya !
-            </Text> */}
+       
+
 
       <HStack spacing={{ base: "2", md: "6" }}>
         {/* <Text

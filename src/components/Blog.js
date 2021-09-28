@@ -90,7 +90,7 @@ import {
     );
   }
   
-  export default function Blog() {
+  export default function Blog(props) {
     return (
       <Flex
         textAlign={'center'}
@@ -138,10 +138,12 @@ import {
             <Card {...cardInfo} index={index} />
           ))}
         </SimpleGrid>
-        <Box>
-          <Icon viewBox="0 0 40 35" mt={14} boxSize={10} color={'purple.400'}>
-           <Button></Button>
-          </Icon>
+        <Box margin={5}>
+          
+           <Button 
+            colorScheme={'messenger'}
+           onClick = {()=>props.showingModel()}>Add your own post</Button>
+    
         </Box>
       </Flex>
     );

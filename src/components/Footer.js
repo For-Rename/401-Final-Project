@@ -76,7 +76,7 @@ import {
                 <SocialButton label={'YouTube'} href={'#'}>
                   <FaYoutube />
                 </SocialButton>
-                <SocialButton label={'Instagram'} href={'#'}>
+                <SocialButton label={'Instagram'} href={'#'} bg={'grey'}>
                   <FaInstagram />
                 </SocialButton>
               </Stack>
