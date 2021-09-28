@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 
 import { Box } from "@chakra-ui/layout";
-import Profile from "./pages/Profile";
+import Profile from "./components/Profile";
 
 import LoginForm from './components/LoginForm'
 
@@ -29,7 +29,7 @@ function App() {
             <Route exact path="/">
               <Home/>
             </Route>
-            <Route exact path="/profile">
+            <Route exact path="/Profile">
               <Profile />
             </Route>
             <Route exact path="/Attendance">
