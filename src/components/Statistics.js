@@ -6,7 +6,7 @@ import {
     Stat,
     StatLabel,
     StatNumber,
- 
+    Button,
     StatHelpText,
     StatArrow
 } from '@chakra-ui/react';
@@ -15,9 +15,10 @@ import {
 
 
 
-export default function Statistics() {
+export default function Statistics(props) {
     return (
         <Box maxW="7xl" mx={'auto'} pt={10} px={{ base: 2, sm: 12, md: 17 }} >
+            <Button ></Button>
             <chakra.h1
                 textAlign={'center'}
                 fontSize={'4xl'}
@@ -26,15 +27,21 @@ export default function Statistics() {
                 Your Most Recent Updates !
             </chakra.h1>
             <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 1, lg: 8 }}>
-                <Stat  borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin ={10} padding={1}>
+                <Stat borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin={10} padding={1}>
                     <StatLabel>Performance</StatLabel>
-                    <StatNumber>70%</StatNumber>
-                    <StatHelpText >
-                        <StatArrow type="increase" />
-                        10.12%
-                    </StatHelpText>
+                    <StatNumber>{props.performance.evaluation}</StatNumber>
+                    {props.perforPercentage > 0 ?
+                        <StatHelpText >
+                            <StatArrow type="increase" />
+                            {props.perforPercentage}
+                        </StatHelpText> :
+                        <StatHelpText >
+                            <StatArrow type="decrease" />
+                            {props.perforPercentage}
+                        </StatHelpText>
+                    }
                 </Stat>
-                <Stat  borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin ={10} padding={1}>
+                <Stat borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin={10} padding={1}>
                     <StatLabel>Vacations</StatLabel>
                     <StatNumber>10 Days</StatNumber>
                     <StatHelpText>
@@ -42,7 +49,7 @@ export default function Statistics() {
                         20%
                     </StatHelpText>
                 </Stat>
-                <Stat  borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin ={10} padding={1}>
+                <Stat borderRadius="md" bg={'#c9c1de'} textAlign={'center'} margin={10} padding={1}>
                     <StatLabel>Leaves</StatLabel>
                     <StatNumber>3 Hours</StatNumber>
                     <StatHelpText>

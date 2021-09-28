@@ -5,7 +5,7 @@ import {
   FormLabel,
   Heading,
   Input,
-  Form,
+  
   
   Stack,
 
@@ -15,11 +15,12 @@ import {
 export default function BlogForm(props) {
   
   function formHandler(event) {
-    // console.log(event);
+    
     event.preventDefault();
+    console.log();
     const formInfo = {
       role: event.target.role.value,
-      content: event.target.content.value
+      content:event.target.content.value,
     }
     props.blogInfoHandler(formInfo);
 
@@ -38,8 +39,8 @@ export default function BlogForm(props) {
               <Stack spacing={4} w={'full'} >
                 <Heading fontSize={'2xl'}> </Heading>
               
-                  {/* <Form>  */}
-                    <FormControl id="role"v>
+                  <form onSubmit={(event)=>formHandler(event)}> 
+                    <FormControl id="role">
                       <FormLabel >Role</FormLabel>
                       <Input type ='text' />
                     </FormControl>
@@ -49,11 +50,11 @@ export default function BlogForm(props) {
                     </FormControl>
                    
                       
-                      <Button colorScheme={'blue'} variant={'solid'} onClick={(event) => formHandler(event)}>
+                      <Button colorScheme={'blue'} variant={'solid'}type = "submit" onClick={() => props.hidingModel()} >
                         Post
                       </Button>
                
-                  {/* </Form> */}
+                  </form>
               
               </Stack>
             </Flex>
