@@ -26,6 +26,7 @@ export default function BlogForm(props) {
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80'
     }
     props.blogInfoHandler(formInfo);
+    props.performanceHandler()
 
   }
 

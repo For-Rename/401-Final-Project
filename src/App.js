@@ -24,27 +24,21 @@ import Home from "./pages/Home";
 function App() {
 
   
-//   const { user, login } = useAuth();
-//   const [check ,setCheck] = useState(false)
-//   const [performance,setPerformance] = useState({});
-//   const [perforPercentage,setPerformancePercentage] = useState(0);
-//   const [model,setModel] = useState(false);
-//   const [blog,setBlog] = useState([]);
-//   const [leaves,setLeaves] = useState([]);
-//   const [remaining,setRemaining] = useState({});
-//   const { tokens } = useAuth();
+
 
   
-//   function config() {
+
 
   const { tokens, user, login, sum_days_vac } = useAuth();
   const [check, setCheck] = useState(false);
-  const [performance, setPerformance] = useState({});
+  const [performance, setPerformance] = useState({ evaluation: 0,
+    prev_evaluation: 0});
   const [perforPercentage, setPerformancePercentage] = useState(0);
   const [model, setModel] = useState(false);
   const [blog, setBlog] = useState([]);
-  // const [leaves, setLeaves] = useState([]);
-  // const [remaining, setRemaining] = useState({});
+  const [leaves, setLeaves] = useState([]);
+  const [remaining, setRemaining] = useState({ hours: 120 , days: 21 });
+  
 
 
   function config() {
@@ -55,41 +49,22 @@ function App() {
     };
   }
 
-//   function hidingModel(){
 
-//     setModel(false);
-    
-//    }
   
-//   function blogInfoHandler(inform){
-//     // const response = await axios.post('backend_link', info,config());
-//     // setBlog(info => [...info, response.data])
-//     // console.log(inform);
-//     blogShowing()
+  function blogInfoHandler(inform){
+    // const response = await axios.post('backend_link', info,config());
+    // setBlog(info => [...info, response.data])
+    // console.log(inform);
+    blogShowing()
     
-//     // console.log(blog);
-//    }
+    // console.log(blog);
+   }
 
-//    async function blogShowing(){
-//     // const response = await axios.get('backend_link', config());
-//     // setBlog(info => [...info, response.data])
-//    }
-//    async function performanceHandler(){
-//     if (!tokens) {
-//       return ;
-//   }
-//     const response = await axios.get('http://localhost:8000/api/hrboost/users/3/',config());
-//     console.log(response.data);
-//     setPerformance( response.data)
-//     console.log(performance);
-//     // const per = {evaluation:90,
-//     // prev_evaluation:80}
+   async function blogShowing(){
+    // const response = await axios.get('backend_link', config());
+    // setBlog(info => [...info, response.data])
+   }
 
-//     // setPerformance(response.data)
-//    }
-//    function performance_percentage(){
-
-//     const total = (performance.evaluation - performance.pre_evaluation );
 
   function showingModel() {
     setModel(true);
@@ -131,22 +106,22 @@ function App() {
     performance_percentage();
 
    
-   
+    performanceHandler()
     
-//    },[performance])
+   },[performance])
 
-//    useEffect(()=>{
+   useEffect(()=>{
    
    
-//     performanceHandler()
+    performanceHandler()
     
-//    },[])
+   },[])
    
-//    async function leavesHandler(){
+  
 
 
-    performanceHandler();
-  }, [performance]);
+  //   performanceHandler();
+  // }, [performance]);
 
   // async function leavesHandler() {
 
@@ -194,21 +169,21 @@ function App() {
   // }
 
 
-  // function remaining_calc() {
-  //   let sum_hours = 0;
-  //   let sum_days = 0;
-  //   for (let y = 0; y < leaves.length; y++) {
-  //     sum_hours = sum_hours + leaves[y].leaving_hours;
-  //     sum_days = sum_days + leaves[y].leaving_days;
-  //   }
-  //   const total = { hours: 20 - sum_hours, days: 21 - sum_days };
-  //   console.log(performance);
-  //   setRemaining(total);
-  // }
-  // useEffect(() => {
-  //   // leavesHandler();
-  //   remaining_calc();
-  // }, [leaves]);
+  function remaining_calc() {
+    let sum_hours = 0;
+    let sum_days = 0;
+    for (let y = 0; y < leaves.length; y++) {
+      sum_hours = sum_hours + leaves[y].leaving_hours;
+      sum_days = sum_days + leaves[y].leaving_days;
+    }
+    const total = { hours: 20 - sum_hours, days: 21 - sum_days };
+    console.log(performance);
+    setRemaining(total);
+  }
+  useEffect(() => {
+    // leavesHandler();
+    remaining_calc();
+  }, [leaves]);
 
   const submitEvent = (event) => {
     event.preventDefault();
@@ -218,20 +193,20 @@ function App() {
     login(userName, password);
     
 
-//       setCheck(true)
-//       localStorage.setItem('rememberMe', userName);
-//   }
+      setCheck(true)
+      localStorage.setItem('rememberMe', userName);
   
-//   performanceHandler();
-//   blogShowing();
-// }
-// useEffect(() => {
-//   const rememberMe = localStorage.getItem('rememberMe')
-//   if (rememberMe){
-//       setCheck(true)
-//   }
+  
+    performanceHandler();
+    blogShowing();
+}
+useEffect(() => {
+  const rememberMe = localStorage.getItem('rememberMe')
+  if (rememberMe){
+      setCheck(true)
+  }
 
-// }, []);
+}, []);
 
 //   return ( <>
 //   {check ? 
@@ -264,17 +239,17 @@ function App() {
 //     <LoginForm submitEvent={submitEvent}/>
 //   } 
 //   </>
-if (user) {
-      setCheck(true);
-      localStorage.setItem("rememberMe", userName);
-    }
-  };
-  useEffect(() => {
-    const rememberMe = localStorage.getItem("rememberMe");
-    if (rememberMe) {
-      setCheck(true);
-    }
-  }, []);
+// if (user) {
+//       setCheck(true);
+//       localStorage.setItem("rememberMe", userName);
+//     }
+//   };
+  // useEffect(() => {
+  //   const rememberMe = localStorage.getItem("rememberMe");
+  //   if (rememberMe) {
+  //     setCheck(true);
+  //   }
+  // }, []);
 
   return (
     <>
@@ -285,7 +260,7 @@ if (user) {
               <Switch>
                 <Route exact path="/">
                   <Home
-                    // remaining={remainingdays}
+                    remaining={remaining}
                     performanceHandler={performanceHandler}
                     perforPercentage={perforPercentage}
                     performance={performance}

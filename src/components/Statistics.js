@@ -55,7 +55,7 @@ export default function Statistics(props) {
           padding={1}
         >
           <StatLabel>Vacations</StatLabel>
-          <StatNumber>{sum_days_vac} Days</StatNumber>
+          <StatNumber>{props.remaining.days} Days</StatNumber>
           <StatHelpText>
             <StatArrow type="decrease" />
             20%
@@ -69,7 +69,7 @@ export default function Statistics(props) {
           padding={1}
         >
           <StatLabel>Leaves</StatLabel>
-          <StatNumber>3 Hours</StatNumber>
+          <StatNumber>{props.remaining.hours} Hours</StatNumber>
           <StatHelpText>
             <StatArrow type="decrease" />
             30%

@@ -29,8 +29,8 @@ function Home(props) {
   return (
     <>
       <Statistics
-        // remainingdays={props.remainingdays}
-        performanceHandler={props.performanceHandler}
+        remaining={props.remaining}
+        
         perforPercentage={props.perforPercentage}
         performance={props.performance}
       ></Statistics>
@@ -39,6 +39,7 @@ function Home(props) {
         blogInfoHandler={props.blogInfoHandler}
         model={props.model}
         hidingModel={props.hidingModel}
+        performanceHandler={props.performanceHandler}
       ></BlogForm>
     </>
   );

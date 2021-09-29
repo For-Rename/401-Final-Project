@@ -1,7 +1,7 @@
 import axios from 'axios'
 import useSWR from 'swr'
 import { useAuth } from '../contexts/auth'
-export const apiUrl ='http://localhost:8000/api/hrboost/';
+export const apiUrl ='http://localhost:8000/api/hrboost';
 
 export default function useResource() {
 
@@ -47,25 +47,15 @@ export default function useResource() {
         }
     }
 
-    async function updateResource(api,resource) {
-        try {
-            const url = api
-            await axios.put(url, resource, config());
-            console.log('work');
-            mutate(); 
-        } catch (error) {
-            handleError(error);
-        }
+    async function updateResource(resource) {
+
     }
 
 
     function config() {
-        const tokensAccess = localStorage.getItem('tokens')
-        console.log('tokensAccess',tokensAccess);
-
         return {
             headers: {
-                'Authorization': 'Bearer ' + tokensAccess
+                'Authorization': 'Bearer ' + tokens.access
             }
         }
     }
