@@ -92,7 +92,7 @@ export async function postAttendance(values) {
   }
 }
 function makeConfig() {
-  const tokensAccess = localStorage.getItem("tokensAccess");
+  const tokensAccess = localStorage.getItem("tokens");
 
   console.log("tokensAccess", tokensAccess);
 
