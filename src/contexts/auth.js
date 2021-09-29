@@ -53,7 +53,7 @@ export function AuthProvider(props) {
     const response = await axios.post(tokenUrl, obj);
 
     const decodedAccess = jwt.decode(response.data.access);
-
+    localStorage.setItem("tokensAccess", response.data.access);
     const userinfo = await axios.get(
       `http://localhost:8000/api/hrboost/userinfo/${decodedAccess.user_id}/`,
       makeConfig(response.data.access)
@@ -83,6 +83,9 @@ export function AuthProvider(props) {
   );
 }
 function makeConfig(token) {
+  const tokensAccess = localStorage.getItem("tokens");
+  console.log("tokensAccess", tokensAccess);
+
   return {
     headers: {
       Authorization: "Bearer " + token,

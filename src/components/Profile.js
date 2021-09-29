@@ -9,6 +9,8 @@ import { useEffect } from "react";
 export default function Profile() {
   const userinfo = JSON.parse(localStorage.getItem("userinfo"));
 
+  console.log(userinfo["id"]);
+
   const { resources, createResource, updateResource, fetchResource } =
     useResource();
   const { user, login, tokens } = useAuth();
@@ -27,7 +29,9 @@ export default function Profile() {
       });
 
     function config() {
+
       const tokensAccess = localStorage.getItem("tokens");
+
 
       return {
         headers: {
@@ -43,6 +47,8 @@ export default function Profile() {
 
   return (
     <>
+
+
       <p> birth date :{data.birth_date}</p> 
       <p>image :{data.image}</p>
       <p>address:{data.address}</p>
@@ -52,6 +58,7 @@ export default function Profile() {
       <p>available_leave_days:{data.available_leave_days}</p>
       <p>evaluation:{data.evaluation}</p>
       <p>pre_evaluation:{data.pre_evaluation}</p>
+
 
       <button onClick={Update}> Update</button>
       {check && <UpdateProfile update={setData} check = {setCheck} userinfo = {data} />}
