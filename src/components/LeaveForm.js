@@ -26,16 +26,20 @@ export default function Leave(props) {
   const [showup, setShowup] = useState(false);
   const handleClose = () => setShowup(false);
   const [users] = useUsers();
-  const id = localStorage.getItem('id')
-
-
+  
+  const id = localStorage.getItem('id');
   const onSubmit = (result) => {
     const obj = {
+
+      num_hours: 0,
+      num_days : 0,
       applied_date: result.applied_date, 
       start_date: result.start_date,
       end_date: result.end_date,
       start_time: result.start_time,
       end_time: result.end_time,
+      num_hours: result.num_hours,
+      num_days: result.num_days,
       description: result.description,
       status: false,
       vacation_type: result.leaveType,
@@ -62,44 +66,88 @@ export default function Leave(props) {
   }
 
 
+ 
+  
+
+
+
   return (
     <div>
   
-    
-    <form onSubmit={handleSubmit(onSubmit)}>
-    {/* <label className="label">First Name</label>
-    <input {...register("firstName")} type='text' defaultValue={users.first_name} className="label"/> */}
-      <label className="label">applied_date</label>
-      <input {...register("applied_date")} type="date" className="input"/>
 
-      <label className="label">start_date</label>
-      <input {...register("start_date")} type="date"  className="input"/>
-
-
-      <label className="label">end_date</label>
-      <input {...register("end_date")} type="date"  className="input"/>
-
-      <label className="label">start_time</label>
-      <input {...register("start_time")} type="time"  className="input"/>
-
-      <label className="label">end_time</label>
-      <input {...register("end_time")} type="time"  className="input"/>
-
-      <label className="label">Add Leave description</label>
-    <input {...register("description")} type='txet' className="label"/>
-
-
-      <label className="label">Select Leave type</label>
-      <select {...register("leaveType")} placeholder="Select Department"  className="input" > 
+    <Flex
+      minH={'100vh'}
+      align={'center'}
+      justify={'center'}
+      bg={useColorModeValue('gray.50', 'gray.800')}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+        <Stack align={'center'}>
+          <Heading fontSize={'4xl'}>Request for a leave </Heading>
+          <Text fontSize={'lg'} color={'gray.600'}>
+            To make it easier for you <Link color={'blue.400'}>JUST Fill the form</Link> ✌️
+          </Text>
+        </Stack>
+       
+          {/* <Stack spacing={6}> */}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl margin={'7'}id="applied_date">
+              <FormLabel fontSize={'2xl' }>Applied Date</FormLabel>
+              <Input type="date" />
+            </FormControl>
+            <FormControl margin={'7'}id="start_date">
+              <FormLabel fontSize={'2xl' }>Start Date</FormLabel>
+              <Input type="date" />
+            </FormControl>
+            <FormControl margin={'7'}id="end_date">
+              <FormLabel fontSize={'2xl' }>End Date</FormLabel>
+              <Input type="date" />
+            </FormControl>
+            <FormControl margin={'7'}id="num_days">
+              <FormLabel fontSize={'2xl' }>Number of Days</FormLabel>
+              <Input type="number" />
+            </FormControl>
+            <FormControl margin={'7'} id="num_hours">
+              <FormLabel fontSize={'2xl' }>Number of Hours (in case of Hourly leave)</FormLabel>
+              <Input type="number" />
+            </FormControl>
+            <FormControl margin={'7'}id="start_time">
+              <FormLabel fontSize={'2xl' }>Leave Start Time</FormLabel>
+              <Input type="time" />
+            </FormControl>
+            <FormControl margin={'7'}id="end_time">
+              <FormLabel fontSize={'2xl' }>Leave End Time</FormLabel>
+              <Input type="time" />
+            </FormControl>
+            <FormControl margin={'7'}id="description">
+              <FormLabel fontSize={'2xl' }>Add Leave description</FormLabel>
+              <Input type="text" />
+            </FormControl>
+            <FormControl margin={'7'} id="leavetype">
+              <FormLabel fontSize={'2xl' }>Leave Type</FormLabel>
+            <select  placeholder="Select Department"  > 
         <option value="">Select Leave Type</option>
         <option value="Annual">Annual</option>
         <option value="Hourly">Hourly</option>
         <option value="Sick">Sick Leave</option>
-      </select>
-    
-      <input type="submit" />
-      </form>
-      {showup && <Modal show={showup} onHide={handleClose}>
+        </select>
+        </FormControl>
+   
+              <Button
+                bg={'blue.400'}
+                color={'white'}
+                _hover={{
+                  bg: 'blue.500',
+                }}
+                type='submit'
+               width={'full'}>
+                Submit
+              </Button>
+       
+              </form>
+      </Stack>
+    </Flex>
+ 
+    {showup && <Modal show={showup} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Request sent sucessfully</Modal.Title>
         </Modal.Header>
@@ -114,5 +162,4 @@ export default function Leave(props) {
 
   );
 }
-
 

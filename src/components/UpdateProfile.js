@@ -2,17 +2,18 @@ import useResource from "../hooks/useResource";
 import { useAuth } from "../contexts/auth";
 
 import React from "react";
-import axios from "axios";
-export default function UpdateProfile({ update,check , userinfo}) {
-  const { resources, createResource, updateResource } = useResource();
-  const { user, login, tokens } = useAuth();
+
+export default function UpdateProfile({ update, check, userinfo }) {
+  const { updateResource } = useResource();
+  const { user } = useAuth();
 
   console.log("user check", user);
 
   function onAdd(event) {
     event.preventDefault();
-
-    const id = localStorage.getItem("id");
+    const user_info_id = JSON.parse(localStorage.getItem("userinfo"));
+ 
+    const id = localStorage.getItem("user_id");
     const obj = {
       birth_date: event.target.birthday.value,
       image: event.target.i.value,
@@ -28,20 +29,21 @@ export default function UpdateProfile({ update,check , userinfo}) {
       dep_id: 1,
       role_id: 2,
     };
-      updateResource(`http://localhost:8000/api/hrboost/usersupdate/1/`, obj).then(res=>{
-        console.log('goodres',res);
-        update(res);
 
-      })
-   check(false);
+    updateResource(
+      `http://localhost:8000/api/hrboost/usersupdate/${user_info_id.id}/`,
+      obj
+    ).then((res) => {
+      console.log(111111,user_info_id.id);
+      update(res);
+    });
+    check(false);
   }
 
-  return (    
-
+  return (
     <>
       <div class="form_wrapper" onSubmit={onAdd}>
         <div class="form_container">
-          
           <div class="row clearfix">
             <div class="">
               <form>
@@ -58,7 +60,7 @@ export default function UpdateProfile({ update,check , userinfo}) {
                     required
                   />
                 </div>
-                
+
                 <div class="input_field">
                   <label for="birthday">Birthday:</label>
                   <input
@@ -98,15 +100,25 @@ export default function UpdateProfile({ update,check , userinfo}) {
 
                 <div class="input_field radio_option">
                   <p>social status</p>
-                  <input type="radio" name="social_status" id="rd1" value = 'single'  />
+                  <input
+                    type="radio"
+                    name="social_status"
+                    id="rd1"
+                    value="single"
+                  />
                   <label for="rd1">single</label>
-                  <input type="radio" name="social_status" id="rd2" value ='Married'/>
+                  <input
+                    type="radio"
+                    name="social_status"
+                    id="rd2"
+                    value="Married"
+                  />
                   <label for="rd2">Married</label>
                 </div>
                 <div class="input_field radio_option">
-                  <input type="radio" name="radiogroup1" id="rd3"  />
+                  <input type="radio" name="radiogroup1" id="rd3" />
                   <label for="rd3">Male</label>
-                  <input type="radio" name="radiogroup1" id="rd4"  />
+                  <input type="radio" name="radiogroup1" id="rd4" />
                   <label for="rd4">Female</label>
                 </div>
                 <input class="button" type="submit" value="submit" />

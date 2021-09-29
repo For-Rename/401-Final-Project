@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import useSWR from 'swr'
 import { useAuth } from '../contexts/auth'
 
 export default function useResource() {
@@ -15,6 +15,7 @@ export default function useResource() {
             console.log('work',data);
             return data.data
         } catch (error) {
+            console.log('rwewewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
             handleError(error);
         }
     }

@@ -63,7 +63,17 @@ export async function postAttendance(values) {
     config
   );
   console.log("lastattendance", lastattendance.data[0]);
-  if (lastattendance.data[0].check_out) {
+  if (!lastattendance.data[0]) {
+    const body = {
+      id: -1,
+      user_id: user_id["id"],
+      check_in: values.check_in,
+    };
+    console.log(body);
+
+    const response = await axios.post(apiUrl, body, config);
+    return response.data;
+  } else if (lastattendance.data[0].check_out) {
     const body = {
       id: -1,
       user_id: user_id["id"],
@@ -92,7 +102,7 @@ export async function postAttendance(values) {
   }
 }
 function makeConfig() {
-  const tokensAccess = localStorage.getItem("tokensAccess");
+  const tokensAccess = localStorage.getItem("tokens");
 
   console.log("tokensAccess", tokensAccess);
 
