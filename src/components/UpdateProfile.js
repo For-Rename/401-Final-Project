@@ -29,28 +29,22 @@ export default function UpdateProfile({ check }) {
       dep_id: 1,
       role_id: 2,
     };
-    updateResource(`http://localhost:8000/api/hrboost/usersupdate/${id}/`, obj);
+    let x=   updateResource(`http://localhost:8000/api/hrboost/usersupdate/${id}/`, obj);
+    console.log('resources1',x.data);
     check(false);
   }
 
-  return (
+  return (    
+
     <>
       <div class="form_wrapper" onSubmit={onAdd}>
         <div class="form_container">
-          <div class="title_container">
-            <h2>Profile</h2>
-          </div>
+          
           <div class="row clearfix">
             <div class="">
               <form>
                 <div class="input_field">
-                  <input
-                    type="dep"
-                    autocomplete="false"
-                    name="dep"
-                    placeholder="Department"
-                    required
-                  />
+                  <p> employees</p>
                 </div>
                 <div class="input_field">
                   <input
@@ -58,24 +52,35 @@ export default function UpdateProfile({ check }) {
                     autocomplete="false"
                     name="i"
                     placeholder="image"
-                    defaultValue={userinfo[0]["image"]}
+                    defaultValue={userinfo.image}
                     required
                   />
                 </div>
+                
                 <div class="input_field">
                   <label for="birthday">Birthday:</label>
                   <input
                     type="date"
-                    defaultValue={userinfo[0]["birth_date"]}
+                    defaultValue={userinfo.birth_date}
                     autocomplete="false"
                     name="birthday"
+                  />
+                </div>
+
+                <div class="input_field">
+                  <label for="job_title">job itle:</label>
+                  <input
+                    type="date"
+                    defaultValue={userinfo.job_title}
+                    autocomplete="false"
+                    name="dep"
                   />
                 </div>
                 <div class="input_field">
                   <label for="address">address:</label>
                   <input
                     type="text"
-                    defaultValue={userinfo[0]["address"]}
+                    defaultValue={userinfo.address}
                     name="address"
                   />
                 </div>
@@ -84,14 +89,14 @@ export default function UpdateProfile({ check }) {
                     type="tel"
                     placeholder="phone number"
                     name="phone"
-                    defaultValue={userinfo[0]["image"]}
+                    defaultValue={userinfo.phone_num}
                     pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
                   ></input>
                 </div>
 
                 <div class="input_field radio_option">
                   <p>social status</p>
-                  <input type="radio" name="social_status" id="rd1" />
+                  <input type="radio" name="social_status" id="rd1"   />
                   <label for="rd1">single</label>
                   <input type="radio" name="social_status" id="rd2" />
                   <label for="rd2">Married</label>

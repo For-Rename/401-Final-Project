@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 export default function Profile() {
   const userinfo = JSON.parse(localStorage.getItem("userinfo"));
-  console.log(userinfo[0]["id"]);
+
   const { resources, createResource, updateResource, fetchResource } =
     useResource();
   const { user, login, tokens } = useAuth();
@@ -17,6 +17,7 @@ export default function Profile() {
   const [data, setData] = useState({});
 
   useEffect(() => {
+
     const id = localStorage.getItem("id");
     console.log("resources1", resources);
     axios
@@ -27,7 +28,6 @@ export default function Profile() {
 
     function config() {
       const tokensAccess = localStorage.getItem("tokens");
-      console.log("tokensAccess", tokensAccess);
 
       return {
         headers: {
@@ -43,20 +43,20 @@ export default function Profile() {
 
   return (
     <>
-      {console.log(data)}
-      <p>{userinfo[0]["birth_date"]}</p>
-      <p>{userinfo[0]["image"]}</p>
-      <p>{userinfo[0]["address"]}</p>
-      <p>{userinfo[0]["phone_num"]}</p>
-      <p>{userinfo[0]["gender"]}</p>
-      <p>{userinfo[0]["social_status"]}</p>
-      <p>{userinfo[0]["job_title"]}</p>
-      <p>{userinfo[0]["available_leave_days"]}</p>
-      <p>{userinfo[0]["evaluation"]}</p>
-      <p>{userinfo[0]["pre_evaluation"]}</p>
+      {console.log('userinfo1',userinfo)}
+      <p>{userinfo.birth_date}</p>
+      <p>{userinfo.image}</p>
+      <p>{userinfo.address}</p>
+      <p>{userinfo.phone_num}</p>
+      <p>{userinfo.gender}</p>
+      <p>{userinfo.social_status}</p>
+      <p>{userinfo.job_title}</p>
+      <p>{userinfo.available_leave_days}</p>
+      <p>{userinfo.evaluation}</p>
+      <p>{userinfo.pre_evaluation}</p>
 
       <button onClick={Update}> Update</button>
-      {check && <UpdateProfile />}
+      {check && <UpdateProfile check={setCheck} />}
     </>
   );
 }

@@ -50,9 +50,10 @@ export default function useResource() {
     async function updateResource(api,resource) {
         try {
             const url = api
-            await axios.put(url, resource, config());
+           const data= await axios.put(url, resource, config());
             console.log('work');
             mutate(); 
+            return data
         } catch (error) {
             handleError(error);
         }

@@ -89,8 +89,10 @@ export default function Leave(props) {
         ))}
       </ul> */}
       <p>{result}</p>
-      <input type="submit" /> */}
-   
+      <input type="submit" /> 
+      </form>
+
+
     <Flex
       minH={'100vh'}
       align={'center'}
