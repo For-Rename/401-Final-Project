@@ -27,6 +27,8 @@ export default function Leave(props) {
   const handleClose = () => setShowup(false);
   const [users] = useUsers();
   const id = localStorage.getItem('id')
+
+
   const onSubmit = (result) => {
     const obj = {
       applied_date: result.applied_date, 
@@ -37,7 +39,7 @@ export default function Leave(props) {
       description: result.description,
       status: false,
       vacation_type: result.leaveType,
-      user_id: id,
+      user_id: id
   }
 
   function config() {
@@ -51,9 +53,9 @@ export default function Leave(props) {
     }
 }
     axios.post(`http://127.0.0.1:8000/api/hrboost/vacations/`,obj,config()).then(
-      res => {console.log(res)} 
+      res => {console.log('res',res)} 
       
-    ).catch(error => console.log(error)) 
+    ).catch(error => console.log('error',error)) 
 
 
     setShowup(true)
