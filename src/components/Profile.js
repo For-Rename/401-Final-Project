@@ -13,12 +13,14 @@ export default function Profile() {
     const { user , login ,tokens} = useAuth();
     
     const [check ,setCheck] = useState(false)
+    const [data ,setData] = useState({})
+
 
     useEffect(() => {
         const id = localStorage.getItem('id')
         console.log('resources1',resources);
         axios.get(`http://localhost:8000/api/hrboost/users/${id}/`, config()).then(res=>{
-            console.log('resources2',res.data);
+            setData(res.data)
         })
 
         function config() {
@@ -45,12 +47,16 @@ export default function Profile() {
 
     return (
         <> 
-
-
-
-
-
-
+        <p>{data.birth_date}</p>
+        <p>{data.image}</p>
+        <p>{data.address}</p>
+        <p>{data.phone_num}</p>
+        <p>{data.gender}</p>
+        <p>{data.social_status}</p>
+        <p>{data.job_title}</p>
+        <p>{data.available_leave_days}</p>
+        <p>{data.evaluation}</p>
+        <p>{data.pre_evaluation}</p>
 
  
          <button onClick={Update} > Update</button>
@@ -64,18 +70,6 @@ export default function Profile() {
 
 
 
-//"birth_date": event.target.birthday.value,
-//"image": event.target.i.value,
-//"address": event.target.address.value,
-//"phone_num": event.target.phone.value,
-//"gender":  event.target.radiogroup1.value,
-//"social_status": event.target.social_status.value,
-//"job_title":  event.target.dep.value,
-//"available_leave_days": 14,
-//"evaluation": 29.0,
-//"pre_evaluation": 0.0,
-//"user_id": id,
-//"dep_id": 1,
-//"role_id": 2
+
 
 
