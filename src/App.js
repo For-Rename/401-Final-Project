@@ -29,6 +29,9 @@ function App() {
   const [model, setModel] = useState(false);
   const [blog, setBlog] = useState([]);
 
+  // const [leaves, setLeaves] = useState([]);
+  // const [remaining, setRemaining] = useState({});
+
 
   function config() {
     return {
@@ -84,10 +87,12 @@ function App() {
     let userName = event.target.user.value;
     let password = event.target.password.value;
     login(userName, password);
-    
+   
 if (user) {
       setCheck(true);
       localStorage.setItem("rememberMe", userName);
+      localStorage.setItem('tokens', tokens.access);
+      localStorage.setItem('id', user.id);
     }
   };
   useEffect(() => {

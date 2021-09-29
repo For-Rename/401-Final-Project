@@ -51,9 +51,9 @@ export default function useResource() {
         try {
             const url = api
            const data= await axios.put(url, resource, config());
-            console.log('work');
+            console.log('work',data);
             mutate(); 
-            return data
+            return data.data
         } catch (error) {
             handleError(error);
         }

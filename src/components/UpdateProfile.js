@@ -3,8 +3,7 @@ import { useAuth } from "../contexts/auth";
 
 import React from "react";
 import axios from "axios";
-export default function UpdateProfile({ check }) {
-  const userinfo = JSON.parse(localStorage.getItem("userinfo"));
+export default function UpdateProfile({ update,check , userinfo}) {
   const { resources, createResource, updateResource } = useResource();
   const { user, login, tokens } = useAuth();
 
@@ -29,9 +28,11 @@ export default function UpdateProfile({ check }) {
       dep_id: 1,
       role_id: 2,
     };
-    let x=   updateResource(`http://localhost:8000/api/hrboost/usersupdate/${id}/`, obj);
-    console.log('resources1',x.data);
-    check(false);
+      updateResource(`http://localhost:8000/api/hrboost/usersupdate/${id}/`, obj).then(res=>{
+        update(res);
+
+      })
+   check(false);
   }
 
   return (    
@@ -70,7 +71,7 @@ export default function UpdateProfile({ check }) {
                 <div class="input_field">
                   <label for="job_title">job itle:</label>
                   <input
-                    type="date"
+                    type="text"
                     defaultValue={userinfo.job_title}
                     autocomplete="false"
                     name="dep"
@@ -96,15 +97,15 @@ export default function UpdateProfile({ check }) {
 
                 <div class="input_field radio_option">
                   <p>social status</p>
-                  <input type="radio" name="social_status" id="rd1"   />
+                  <input type="radio" name="social_status" id="rd1" value = 'single'  />
                   <label for="rd1">single</label>
-                  <input type="radio" name="social_status" id="rd2" />
+                  <input type="radio" name="social_status" id="rd2" value ='Married'/>
                   <label for="rd2">Married</label>
                 </div>
                 <div class="input_field radio_option">
-                  <input type="radio" name="radiogroup1" id="rd3" />
+                  <input type="radio" name="radiogroup1" id="rd3"  />
                   <label for="rd3">Male</label>
-                  <input type="radio" name="radiogroup1" id="rd4" />
+                  <input type="radio" name="radiogroup1" id="rd4"  />
                   <label for="rd4">Female</label>
                 </div>
                 <input class="button" type="submit" value="submit" />

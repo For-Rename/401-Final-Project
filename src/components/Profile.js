@@ -14,16 +14,16 @@ export default function Profile() {
   const { user, login, tokens } = useAuth();
 
   const [check, setCheck] = useState(false);
+
   const [data, setData] = useState({});
 
   useEffect(() => {
 
     const id = localStorage.getItem("id");
-    console.log("resources1", resources);
     axios
       .get(`http://localhost:8000/api/hrboost/userinfo/${id}/`, config())
       .then((res) => {
-        setData(res.data);
+        setData(res.data[1]);
       });
 
     function config() {
@@ -43,20 +43,18 @@ export default function Profile() {
 
   return (
     <>
-      {console.log('userinfo1',userinfo)}
-      <p>{userinfo.birth_date}</p>
-      <p>{userinfo.image}</p>
-      <p>{userinfo.address}</p>
-      <p>{userinfo.phone_num}</p>
-      <p>{userinfo.gender}</p>
-      <p>{userinfo.social_status}</p>
-      <p>{userinfo.job_title}</p>
-      <p>{userinfo.available_leave_days}</p>
-      <p>{userinfo.evaluation}</p>
-      <p>{userinfo.pre_evaluation}</p>
+      <p> birth date :{data.birth_date}</p> 
+      <p>image :{data.image}</p>
+      <p>address:{data.address}</p>
+      <p>phone_num:{data.phone_num}</p>
+      <p>social_status:{data.social_status}</p>
+      <p>job_title:{data.job_title}</p>
+      <p>available_leave_days:{data.available_leave_days}</p>
+      <p>evaluation:{data.evaluation}</p>
+      <p>pre_evaluation:{data.pre_evaluation}</p>
 
       <button onClick={Update}> Update</button>
-      {check && <UpdateProfile check={setCheck} />}
+      {check && <UpdateProfile update={setData} check = {setCheck} userinfo = {data} />}
     </>
   );
 }
