@@ -43,6 +43,7 @@ function App() {
   const [perforPercentage, setPerformancePercentage] = useState(0);
   const [model, setModel] = useState(false);
   const [blog, setBlog] = useState([]);
+
   // const [leaves, setLeaves] = useState([]);
   // const [remaining, setRemaining] = useState({});
 
@@ -216,57 +217,12 @@ function App() {
     let password = event.target.password.value;
     console.log(userName);
     login(userName, password);
-    
-
-//       setCheck(true)
-//       localStorage.setItem('rememberMe', userName);
-//   }
-  
-//   performanceHandler();
-//   blogShowing();
-// }
-// useEffect(() => {
-//   const rememberMe = localStorage.getItem('rememberMe')
-//   if (rememberMe){
-//       setCheck(true)
-//   }
-
-// }, []);
-
-//   return ( <>
-//   {check ? 
-//     <Box>
-//       <Router>
-//         <SidebarWithHeader>
-//           <Switch>
-//             <Route exact path="/">
-//               <Home remaining={remaining} performanceHandler={performanceHandler} perforPercentage={perforPercentage}performance={performance}blog = {blog}showingModel={showingModel} blogInfoHandler={blogInfoHandler} model={model} hidingModel={hidingModel}/>
-//             </Route>
-//             <Route exact path="/profile">
-//               <Profile />
-//             </Route>
-//             <Route exact path="/Attendance">
-//               <Attendance />
-//             </Route>
-//             <Route exact path="/SignUp">
-//               <SignUp />
-//             </Route>
-//             <Route exact path="/LeaveForm">
-//               <LeaveForm leavesHandler={leavesHandler} performanceHandler={performanceHandler}/>
-//             </Route>
-//           </Switch>
-//           <Box>
-//             <Footer></Footer>
-//           </Box>
-//         </SidebarWithHeader>
-//       </Router>
-//     </Box>:
-//     <LoginForm submitEvent={submitEvent}/>
-//   } 
-//   </>
+   
 if (user) {
       setCheck(true);
       localStorage.setItem("rememberMe", userName);
+      localStorage.setItem('tokens', tokens.access);
+      localStorage.setItem('id', user.id);
     }
   };
   useEffect(() => {
