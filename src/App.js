@@ -19,14 +19,22 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import Home from "./pages/Home";
+
+// import Log from "./components/LoginForm";
+// import SignUp from './components/SignUp';
+
+
+
+  
+
+
+  
+
+
+
 function App() {
 
-  
-
-
-  
-
-
+ 
   const { tokens, user, login, sum_days_vac } = useAuth();
   const [check, setCheck] = useState(false);
   const [performance, setPerformance] = useState({ evaluation: 0,
@@ -34,9 +42,11 @@ function App() {
   const [perforPercentage, setPerformancePercentage] = useState(0);
   const [model, setModel] = useState(false);
   const [blog, setBlog] = useState([]);
+
   const [leaves, setLeaves] = useState([]);
   const [remaining, setRemaining] = useState({ hours: 120 , days: 21 });
   
+
 
 
   function config() {
@@ -49,19 +59,39 @@ function App() {
 
 
   
-  function blogInfoHandler(inform){
-    // const response = await axios.post('backend_link', info,config());
-    // setBlog(info => [...info, response.data])
-    // console.log(inform);
-    blogShowing()
+  // function blogInfoHandler(inform){
+  //   // const response = await axios.post('backend_link', info,config());
+  //   // setBlog(info => [...info, response.data])
+  //   // console.log(inform);
+ 
     
-    // console.log(blog);
-   }
+  //   // console.log(blog);
+  //  }
 
    async function blogShowing(){
-    // const response = await axios.get('backend_link', config());
-    // setBlog(info => [...info, response.data])
+    if (!tokens) {
+      return;
+  }
+    const response = await axios.get('http://localhost:8000/api/hrboost/blogs/‏', config());
+    console.log(response.data);
+    setBlog(info => [...info, response.data[0]])
    }
+   async function leavesHandler(){
+      if (!tokens) {
+        return;
+    }
+      const response = await axios.get('http://127.0.0.1:8000/api/hrboost/vacations/ '+ user.id + "/",config());
+      console.log(response.data[0]);
+      if (!tokens) {
+        return;
+    }
+  
+    const obj = {
+      leaving_hours:response.data[0].num_hours,
+      leaving_days: response.data[0].num_days,
+    }
+      setLeaves( info => [...info, obj])
+     }
 
 
   function showingModel() {
@@ -70,9 +100,19 @@ function App() {
   function hidingModel() {
     setModel(false);
   }
-  function blogInfoHandler(inform) {
 
-    setBlog((info) => [...info, inform]);
+  async function blogInfoHandler(inform) {
+    if (!tokens) {
+      return;
+    }
+     await axios.post('http://localhost:8000/api/hrboost/blogs/‏', inform, config());
+    // setBlog(info => [...info, response.data])
+    // console.log(inform);
+
+    // setBlog((info) => [...info, inform]);
+    blogShowing()
+    // console.log(blog);
+
   }
   async function performanceHandler() {
     if (!tokens) {
@@ -89,6 +129,7 @@ function App() {
     };
     setPerformance(per);
   }
+   
   function performance_percentage() {
     const total = performance.evaluation - performance.prev_evaluation;
 
@@ -113,54 +154,7 @@ function App() {
   
 
 
-  //   performanceHandler();
-  // }, [performance]);
-
-  // async function leavesHandler() {
-
-  //   if (!tokens) {
-  //     return;
-  //   }
-  //   const response = await axios.get(
-  //     "http://localhost:8000/api/hrboost/vacationsuser/" + user.id + "/",
-  //     config()
-  //   );
-  //   console.log(response.data);
-
-  //   const annuallyvac = response.data.filter(
-  //     (item) => item.vacation_type > "annually"
-  //   );
-  //   const hourlyvac = response.data.filter(
-  //     (item) => item.vacation_type > "hourly"
-  //   );
-  //   console.log("annuallyvac", annuallyvac);
-  //   console.log("hourlyvac", hourlyvac);
-
-  //   let sum_days_vac = 0;
-  //   annuallyvac.map((item) => {
-  //     var date1 = new Date(item.start_date);
-  //     var date2 = new Date(item.end_date);
-
-  //     var Difference_In_Time = date2.getTime() - date1.getTime();
-  //     sum_days_vac += Difference_In_Time / (1000 * 3600 * 24);
-  //   });
-  //   return sum_days_vac;
-  //   // var date1 = new Date("06/30/2019");
-  //   // var date2 = new Date("07/30/2019");
-
-  //   // // To calculate the time difference of two dates
-  //   // var Difference_In_Time = date2.getTime() - date1.getTime();
-
-  //   // // To calculate the no. of days between two dates
-  //   // var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-  //   // setLeaves((info) => [...info, response.data]);
-  //   // const obj = {
-  //   //   leaving_hours: 5,
-  //   //   leaving_days: 1,
-  //   // };
-  //   // setLeaves((info) => [...info, obj]);
-  // }
-
+  
 
   function remaining_calc() {
     let sum_hours = 0;
@@ -187,10 +181,12 @@ function App() {
 
       setCheck(true)
       localStorage.setItem('rememberMe', userName);
-  
+      //  localStorage.setItem('tokens', tokens.access);
+      //  localStorage.setItem('id', user.id);
   
     performanceHandler();
     blogShowing();
+    leavesHandler()
 }
 useEffect(() => {
   const rememberMe = localStorage.getItem('rememberMe')
@@ -200,48 +196,9 @@ useEffect(() => {
 
 }, []);
 
-//   return ( <>
-//   {check ? 
-//     <Box>
-//       <Router>
-//         <SidebarWithHeader>
-//           <Switch>
-//             <Route exact path="/">
-//               <Home remaining={remaining} performanceHandler={performanceHandler} perforPercentage={perforPercentage}performance={performance}blog = {blog}showingModel={showingModel} blogInfoHandler={blogInfoHandler} model={model} hidingModel={hidingModel}/>
-//             </Route>
-//             <Route exact path="/profile">
-//               <Profile />
-//             </Route>
-//             <Route exact path="/Attendance">
-//               <Attendance />
-//             </Route>
-//             <Route exact path="/SignUp">
-//               <SignUp />
-//             </Route>
-//             <Route exact path="/LeaveForm">
-//               <LeaveForm leavesHandler={leavesHandler} performanceHandler={performanceHandler}/>
-//             </Route>
-//           </Switch>
-//           <Box>
-//             <Footer></Footer>
-//           </Box>
-//         </SidebarWithHeader>
-//       </Router>
-//     </Box>:
-//     <LoginForm submitEvent={submitEvent}/>
-//   } 
-//   </>
-// if (user) {
-//       setCheck(true);
-//       localStorage.setItem("rememberMe", userName);
-//     }
-//   };
-  // useEffect(() => {
-  //   const rememberMe = localStorage.getItem("rememberMe");
-  //   if (rememberMe) {
-  //     setCheck(true);
-  //   }
-  // }, []);
+
+
+
 
   return (
     <>
@@ -261,6 +218,8 @@ useEffect(() => {
                     blogInfoHandler={blogInfoHandler}
                     model={model}
                     hidingModel={hidingModel}
+                    leavesHandler={ leavesHandler}
+                    blogShowing={blogShowing}
                   />
                 </Route>
                 <Route exact path="/profile">

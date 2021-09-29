@@ -40,6 +40,9 @@ function Home(props) {
         model={props.model}
         hidingModel={props.hidingModel}
         performanceHandler={props.performanceHandler}
+        leavesHandler = {props.leavesHandler}
+        blogShowing = {props.blogShowing}
+
       ></BlogForm>
     </>
   );

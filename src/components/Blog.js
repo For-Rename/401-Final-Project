@@ -135,7 +135,8 @@ import {
           mt={16}
           mx={'auto'}>
           {props.blog.map((cardInfo, index) => (
-            <Card name={cardInfo.name}  content={cardInfo.content}  avatar={cardInfo.avatar}  role={cardInfo.role}  index={index} />
+            //  name={cardInfo.name} avatar={cardInfo.avatar} 
+            <Card content={cardInfo.content}   role={cardInfo.role}  index={index} />
           ))}
         </SimpleGrid>
         <Box margin={5}>
