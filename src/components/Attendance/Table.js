@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ReactFlexyTable from 'react-flexy-table';
-import 'react-flexy-table/dist/index.css';
-const URL = "https://jsonplaceholder.typicode.com/users";
+import React from "react";
+// import axios from "axios";
+import ReactFlexyTable from "react-flexy-table";
+import "react-flexy-table/dist/index.css";
+// const URL = "https://jsonplaceholder.typicode.com/users";
 
 const Table = (props) => {
   // const [employees, setEmployees] = useState([]);
@@ -54,7 +54,7 @@ const Table = (props) => {
 
   return (
     <>
-     <ReactFlexyTable data={props.Attendance}filterable globalSearch/>
+      <ReactFlexyTable data={props.attendance} filterable globalSearch />
     </>
   );
 };

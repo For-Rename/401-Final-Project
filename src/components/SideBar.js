@@ -42,9 +42,10 @@ import hrmact from "../assets/hrmact-logo.png";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, href: "/" },
+  { name: "Profile", icon: FiTrendingUp , href: "/Profile"  },
   { name: "Performance", icon: FiTrendingUp },
   { name: "My Team", icon: FiCompass },
-  { name: "Leaves", icon: FiBriefcase , href: "/LeaveForm"},
+  { name: "Leaves", icon: FiBriefcase, href: "/LeaveForm" },
   { name: "Attendance", icon: FiActivity, href: "/Attendance" },
   { name: "Settings", icon: FiSettings, href: "/SignUp" },
 ];
@@ -138,41 +139,37 @@ const NavItem = ({ icon, children, to, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  console.log(localStorage.getItem("rememberMe"));
+  const out = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
-
-    const out = ()=>{
-        localStorage.clear();
-        window.location.reload();
-    } 
-
-
-    return (
-        <Flex
-            ml={{ base: 0, md: 60 }}
-            px={{ base: 4, md: 4 }}
-            height="20"
-            alignItems="center"
-            bg={useColorModeValue('white', 'gray.900')}
-            borderBottomWidth="1px"
-            borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-            justifyContent={{ base: 'space-between', md: 'flex-end' }}
-            {...rest}>
-            <FormControl display="flex" alignItems="center">
-                <FormLabel htmlFor="email-alerts" mb="0">
-                    Enable Notifications?
-                </FormLabel>
-                <Switch id="email-alerts" />
-            </FormControl>
-            <IconButton
-                display={{ base: 'flex', md: 'none' }}
-                onClick={onOpen}
-                variant="outline"
-                aria-label="open menu"
-                icon={<FiMenu />}
-            />
-
-       
-
+  return (
+    <Flex
+      ml={{ base: 0, md: 60 }}
+      px={{ base: 4, md: 4 }}
+      height="20"
+      alignItems="center"
+      bg={useColorModeValue("white", "gray.900")}
+      borderBottomWidth="1px"
+      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+      justifyContent={{ base: "space-between", md: "flex-end" }}
+      {...rest}
+    >
+      <FormControl display="flex" alignItems="center">
+        <FormLabel htmlFor="email-alerts" mb="0">
+          Enable Notifications?
+        </FormLabel>
+        <Switch id="email-alerts" />
+      </FormControl>
+      <IconButton
+        display={{ base: "flex", md: "none" }}
+        onClick={onOpen}
+        variant="outline"
+        aria-label="open menu"
+        icon={<FiMenu />}
+      />
 
       <HStack spacing={{ base: "2", md: "6" }}>
         {/* <Text
@@ -208,7 +205,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Haya Balasmeh</Text>
+                  <Text fontSize="sm">
+                    {localStorage.getItem("rememberMe")}
+                  </Text>
                   <Text fontSize="xs" color="gray.600">
                     Employee
                   </Text>
@@ -225,12 +224,10 @@ const MobileNav = ({ onOpen, ...rest }) => {
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
 
-
-                            <MenuDivider />
-                            <MenuItem onClick={out} > Sign out</MenuItem>
-                        </MenuList>
-                    </Menu>
-
+              <MenuDivider />
+              <MenuItem onClick={out}> Sign out</MenuItem>
+            </MenuList>
+          </Menu>
         </Flex>
       </HStack>
     </Flex>

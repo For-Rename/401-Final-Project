@@ -47,15 +47,25 @@ export default function useResource() {
         }
     }
 
-    async function updateResource(resource) {
-
+    async function updateResource(api,resource) {
+        try {
+            const url = api
+            await axios.put(url, resource, config());
+            console.log('work');
+            mutate(); 
+        } catch (error) {
+            handleError(error);
+        }
     }
 
 
     function config() {
+        const tokensAccess = localStorage.getItem('tokens')
+        console.log('tokensAccess',tokensAccess);
+
         return {
             headers: {
-                'Authorization': 'Bearer ' + tokens.access
+                'Authorization': 'Bearer ' + tokensAccess
             }
         }
     }
