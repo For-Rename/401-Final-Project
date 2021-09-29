@@ -56,15 +56,17 @@ export async function fetchAttendance(url) {
 }
 export async function postAttendance(values) {
   const config = makeConfig();
+  const user_id = JSON.parse(localStorage.getItem("userinfo"));
+  console.log(user_id["id"]);
   const lastattendance = await axios.get(
-    "http://localhost:8000/api/hrboost/lastattendance/" + values.user_id + "/",
+    "http://localhost:8000/api/hrboost/lastattendance/" + user_id["id"] + "/",
     config
   );
   console.log("lastattendance", lastattendance.data[0]);
   if (lastattendance.data[0].check_out) {
     const body = {
       id: -1,
-      user_id: values.user_id,
+      user_id: user_id["id"],
       check_in: values.check_in,
     };
     console.log(body);
@@ -90,7 +92,8 @@ export async function postAttendance(values) {
   }
 }
 function makeConfig() {
-  const tokensAccess = localStorage.getItem("tokens");
+  const tokensAccess = localStorage.getItem("tokensAccess");
+
   console.log("tokensAccess", tokensAccess);
 
   return {

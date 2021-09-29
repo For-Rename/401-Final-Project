@@ -19,8 +19,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import Home from "./pages/Home";
-// import Log from "./components/LoginForm";
-// import SignUp from './components/SignUp';
 function App() {
 
   
@@ -68,18 +66,13 @@ function App() {
 
   function showingModel() {
     setModel(true);
-    //  leavesHandler()
   }
   function hidingModel() {
     setModel(false);
   }
   function blogInfoHandler(inform) {
-    // const response = await axios.post('backend_link', info);
-    // setBlog(info => [...info, response.data])
-    // console.log(inform);
 
     setBlog((info) => [...info, inform]);
-    // console.log(blog);
   }
   async function performanceHandler() {
     if (!tokens) {
@@ -189,7 +182,6 @@ function App() {
     event.preventDefault();
     let userName = event.target.user.value;
     let password = event.target.password.value;
-    console.log(userName);
     login(userName, password);
     
 
