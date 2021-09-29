@@ -35,7 +35,7 @@ export default function CDate() {
     const id = localStorage.getItem("id");
     const value = {
       // id: event.target.id.value,
-      id: attendance.length + 1,
+      // id: attendance.length + 1,
       user_id: id,
       check_in: dt,
       check_out: dt,
