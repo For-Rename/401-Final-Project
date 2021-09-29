@@ -3,14 +3,12 @@ import axios from "axios";
 export const apiUrl = "http://localhost:8000/api/hrboost/attendancelist/";
 export class Attendances {
   constructor(info) {
-    this.id = info.id;
     this.user_id = info.user_id;
     this.check_in = info.check_in;
     this.check_out = info.check_out;
   }
   static fromValues(values) {
     const info = {
-      id: -1,
       user_id: values.user_id,
       check_in: values.check_in,
       check_out: values.check_out,
@@ -65,7 +63,6 @@ export async function postAttendance(values) {
   console.log("lastattendance", lastattendance.data[0]);
   if (!lastattendance.data[0]) {
     const body = {
-      id: -1,
       user_id: user_id["id"],
       check_in: values.check_in,
     };
@@ -75,7 +72,6 @@ export async function postAttendance(values) {
     return response.data;
   } else if (lastattendance.data[0].check_out) {
     const body = {
-      id: -1,
       user_id: user_id["id"],
       check_in: values.check_in,
     };
