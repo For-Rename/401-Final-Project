@@ -62,19 +62,26 @@ function App() {
   //  }
 
    async function blogShowing(){
+    if (!tokens) {
+      return;
+  }
     const response = await axios.get('http://localhost:8000/api/hrboost/blogs/‏', config());
-    setBlog(info => [...info, response.data])
+    console.log(response.data);
+    setBlog(info => [...info, response.data[0]])
    }
    async function leavesHandler(){
       if (!tokens) {
         return;
     }
-      const response = await axios.get('http://127.0.0.1:8000/api/hrboost/vacations/',config());
-      console.log(response.data);
+      const response = await axios.get('http://127.0.0.1:8000/api/hrboost/vacations/ '+ user.id + "/",config());
+      console.log(response.data[0]);
+      if (!tokens) {
+        return;
+    }
   
     const obj = {
-      leaving_hours:response.data,
-      leaving_days: response.data,
+      leaving_hours:response.data[0].num_hours,
+      leaving_days: response.data[0].num_days,
     }
       setLeaves( info => [...info, obj])
      }
@@ -87,6 +94,9 @@ function App() {
     setModel(false);
   }
   async function blogInfoHandler(inform) {
+    if (!tokens) {
+      return;
+    }
      await axios.post('http://localhost:8000/api/hrboost/blogs/‏', inform, config());
     // setBlog(info => [...info, response.data])
     // console.log(inform);
@@ -198,6 +208,8 @@ useEffect(() => {
                     blogInfoHandler={blogInfoHandler}
                     model={model}
                     hidingModel={hidingModel}
+                    leavesHandler={ leavesHandler}
+                    blogShowing={blogShowing}
                   />
                 </Route>
                 <Route exact path="/profile">

@@ -11,21 +11,27 @@ import {
 
   Image,
 } from "@chakra-ui/react";
+import { useAuth } from "../contexts/auth";
 
 export default function BlogForm(props) {
-  
+  const { tokens, user, login, sum_days_vac } = useAuth();
   function formHandler(event) {
     
     event.preventDefault();
-    console.log();
+    console.log(user);
+   
     const formInfo = {
-      name: 'haya',
+      // name: user.username,
       role: event.target.role.value,
       content:event.target.content.value,
     
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80'
+    //   avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80'
+    // 
     }
     props.blogInfoHandler(formInfo);
+    props.blogShowing();
+    props.performanceHandler();
+    props.leavesHandler()
 
   }
 

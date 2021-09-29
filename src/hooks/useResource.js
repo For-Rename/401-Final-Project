@@ -1,7 +1,7 @@
 import axios from 'axios'
 import useSWR from 'swr'
 import { useAuth } from '../contexts/auth'
-export const apiUrl ='http://localhost:8000/api/hrboost/';
+export const apiUrl ='http://localhost:8000/api/hrboost';
 
 export default function useResource() {
 
