@@ -12,8 +12,8 @@ export default function UpdateProfile({ update, check, userinfo }) {
   function onAdd(event) {
     event.preventDefault();
     const user_info_id = JSON.parse(localStorage.getItem("userinfo"));
-    console.log(user_info_id["id"]);
-    const id = localStorage.getItem("id");
+ 
+    const id = localStorage.getItem("user_id");
     const obj = {
       birth_date: event.target.birthday.value,
       image: event.target.i.value,
@@ -29,10 +29,12 @@ export default function UpdateProfile({ update, check, userinfo }) {
       dep_id: 1,
       role_id: 2,
     };
+
     updateResource(
-      `http://localhost:8000/api/hrboost/usersupdate/${user_info_id["id"]}/`,
+      `http://localhost:8000/api/hrboost/usersupdate/${user_info_id.id}/`,
       obj
     ).then((res) => {
+      console.log(111111,user_info_id.id);
       update(res);
     });
     check(false);

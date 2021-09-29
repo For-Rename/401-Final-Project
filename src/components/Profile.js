@@ -20,8 +20,6 @@ import {
 import { CheckIcon } from '@chakra-ui/icons';
 
 
-
-
 export default function Profile() {
   const userinfo = JSON.parse(localStorage.getItem("user_id"));
 
@@ -36,39 +34,25 @@ export default function Profile() {
 
   useEffect(() => {
 
+     console.log('----------------------------------------------')
+    const id = localStorage.getItem("user_id");
+    axios
+    .get(`http://localhost:8000/api/hrboost/userinfo/${id}/`, config())
+    .then((res) => {
+      console.log('resres',res.data);
+      setData(res.data[0]);
+    }).catch(err=>console.log('err',err))
 
-    // const id = localStorage.getItem("id");
-    // axios
-    //   .get(`http://localhost:8000/api/hrboost/userinfo/${id}/`, config())
-    //   .then((res) => {
-      
-        // setData(res.data[1]);
-       const  data_set = {address: 'amman'
-        ,phone_num:'079864366',
-       social_status: 'married',
-        job_title: 'sales manager',
-        available_leave_days: 21,
-       evaluation: 80,
-       pre_evaluation: 90,}
-        setData(data_set)
+  function config() {
+    const tokensAccess = localStorage.getItem("tokens");
+    return {
+      headers: {
+        Authorization: "Bearer " + tokensAccess,
+      },
+    };
+  }
+
       },[]);
-
-//     axios
-//       .get(`http://localhost:8000/api/hrboost/userinfo/${userinfo}/`, config())
-//       .then((res) => {
-//         setData(res.data[0]);
-//       });
-
-
-    function config() {
-      const tokensAccess = localStorage.getItem("tokens");
-      return {
-        headers: {
-          Authorization: "Bearer " + tokensAccess,
-        },
-      };
-    }
-  
 
   const Update = () => {
     setCheck(true);
@@ -171,7 +155,6 @@ export default function Profile() {
           </SimpleGrid>
         </Container>
       </Box>
-      {check && <UpdateProfile update={setData} check={setCheck} userinfo={data} />}
       <Button
         bg={'blue.400'}
         color={'white'}
@@ -179,41 +162,16 @@ export default function Profile() {
           bg: 'blue.500',
         }}
         onClick={Update}
+        
         // width={'full'}
-       width={"auto"}
-       margin ={'20'}
+        width={"auto"}
+        margin ={'20'}
         >
         Update
       </Button>
-      {/* <p> birth date :{data.birth_date}</p> 
+          {check && <UpdateProfile update={setData} check={setCheck} userinfo={data} />}
 
-      <p> birth date :{data.birth_date}</p>
-
-      <p>image :{data.image}</p>
-      <p>address:{data.address}</p>
-      <p>phone_num:{data.phone_num}</p>
-      <p>social_status:{data.social_status}</p>
-      <p>job_title:{data.job_title}</p>
-      <p>available_leave_days:{data.available_leave_days}</p>
-      <p>evaluation:{data.evaluation}</p>
-
-      <p>pre_evaluation:{data.pre_evaluation}</p> */}
-
- 
-
-      <p>pre_evaluation:{data.pre_evaluation}</p>
-
-      <button onClick={Update}> Update</button>
-      {check && (
-        <UpdateProfile update={setData} check={setCheck} userinfo={data} />
-      )}
-
+  
     </>
   );
 }
-
-              
-                
-              
-              
-                
