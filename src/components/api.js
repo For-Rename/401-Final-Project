@@ -40,8 +40,8 @@ export async function getToken(values) {
   // setState((prevState) => ({ ...prevState, ...newState }));
   return refreshResponse.data.access;
 }
-export async function fetchAttendance(url, token) {
-  const config = makeConfig(token.access);
+export async function fetchAttendance(url) {
+  const config = makeConfig();
   // console.log(config);
   const response = await axios.get(url, config);
   // console.log(response);
@@ -54,8 +54,8 @@ export async function fetchAttendance(url, token) {
   // console.log(attendances);
   return attendances;
 }
-export async function postAttendance(token, values) {
-  const config = makeConfig(token);
+export async function postAttendance(values) {
+  const config = makeConfig();
   const lastattendance = await axios.get(
     "http://localhost:8000/api/hrboost/lastattendance/" + values.user_id + "/",
     config
@@ -89,10 +89,13 @@ export async function postAttendance(token, values) {
     return response.data;
   }
 }
-function makeConfig(token) {
+function makeConfig() {
+  const tokensAccess = localStorage.getItem("tokens");
+  console.log("tokensAccess", tokensAccess);
+
   return {
     headers: {
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + tokensAccess,
     },
   };
 }

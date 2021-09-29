@@ -14,12 +14,17 @@ import { useAuth } from "../../contexts/auth";
 export default function CDate() {
   // const dt = null;
   const { user } = useAuth();
-  const tokens = JSON.parse(localStorage.getItem("tokens"));
+
+  const tokensAccess = localStorage.getItem("tokens");
+
   // const [cdate,setDate] = useState(dt);
   // const handelDate = () =>{
   //   let dt = new Date().toLocaleString();
   //   setDate(dt);
-  const { data, error, mutate } = useSWR([apiUrl, tokens], fetchAttendance);
+  const { data, error, mutate } = useSWR(
+    [apiUrl, tokensAccess],
+    fetchAttendance
+  );
   console.log(data);
   const [attendance, setAttendance] = useState([]);
   useEffect(() => {
@@ -33,10 +38,11 @@ export default function CDate() {
     event.preventDefault();
     let dt = new Date().toISOString();
     // console.log(dt);
+    const id = localStorage.getItem("id");
     const value = {
       // id: event.target.id.value,
       id: attendance.length + 1,
-      user_id: user.id,
+      user_id: id,
       check_in: dt,
       check_out: dt,
 
@@ -58,7 +64,7 @@ export default function CDate() {
     newrecord.user_id += "..."; // Add the ... to show loading state
     const updatedAttendance = [newrecord, ...attendance];
     mutate(updatedAttendance, false);
-    await postAttendance(tokens.access, value);
+    await postAttendance(value);
     mutate();
   }
   // function submitHandler(event) {
