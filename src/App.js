@@ -22,6 +22,21 @@ import Home from "./pages/Home";
 // import Log from "./components/LoginForm";
 // import SignUp from './components/SignUp';
 function App() {
+
+  
+//   const { user, login } = useAuth();
+//   const [check ,setCheck] = useState(false)
+//   const [performance,setPerformance] = useState({});
+//   const [perforPercentage,setPerformancePercentage] = useState(0);
+//   const [model,setModel] = useState(false);
+//   const [blog,setBlog] = useState([]);
+//   const [leaves,setLeaves] = useState([]);
+//   const [remaining,setRemaining] = useState({});
+//   const { tokens } = useAuth();
+
+  
+//   function config() {
+
   const { tokens, user, login, sum_days_vac } = useAuth();
   const [check, setCheck] = useState(false);
   const [performance, setPerformance] = useState({});
@@ -31,6 +46,7 @@ function App() {
   // const [leaves, setLeaves] = useState([]);
   // const [remaining, setRemaining] = useState({});
 
+
   function config() {
     return {
       headers: {
@@ -38,6 +54,43 @@ function App() {
       },
     };
   }
+
+//   function hidingModel(){
+
+//     setModel(false);
+    
+//    }
+  
+//   function blogInfoHandler(inform){
+//     // const response = await axios.post('backend_link', info,config());
+//     // setBlog(info => [...info, response.data])
+//     // console.log(inform);
+//     blogShowing()
+    
+//     // console.log(blog);
+//    }
+
+//    async function blogShowing(){
+//     // const response = await axios.get('backend_link', config());
+//     // setBlog(info => [...info, response.data])
+//    }
+//    async function performanceHandler(){
+//     if (!tokens) {
+//       return ;
+//   }
+//     const response = await axios.get('http://localhost:8000/api/hrboost/users/3/',config());
+//     console.log(response.data);
+//     setPerformance( response.data)
+//     console.log(performance);
+//     // const per = {evaluation:90,
+//     // prev_evaluation:80}
+
+//     // setPerformance(response.data)
+//    }
+//    function performance_percentage(){
+
+//     const total = (performance.evaluation - performance.pre_evaluation );
+
   function showingModel() {
     setModel(true);
     //  leavesHandler()
@@ -70,16 +123,33 @@ function App() {
   }
   function performance_percentage() {
     const total = performance.evaluation - performance.prev_evaluation;
+
     console.log(performance);
     setPerformancePercentage(total);
   }
   useEffect(() => {
     performance_percentage();
 
+   
+   
+    
+//    },[performance])
+
+//    useEffect(()=>{
+   
+   
+//     performanceHandler()
+    
+//    },[])
+   
+//    async function leavesHandler(){
+
+
     performanceHandler();
   }, [performance]);
 
   // async function leavesHandler() {
+
   //   if (!tokens) {
   //     return;
   //   }
@@ -88,6 +158,7 @@ function App() {
   //     config()
   //   );
   //   console.log(response.data);
+
   //   const annuallyvac = response.data.filter(
   //     (item) => item.vacation_type > "annually"
   //   );
@@ -122,6 +193,7 @@ function App() {
   //   // setLeaves((info) => [...info, obj]);
   // }
 
+
   // function remaining_calc() {
   //   let sum_hours = 0;
   //   let sum_days = 0;
@@ -144,7 +216,55 @@ function App() {
     let password = event.target.password.value;
     console.log(userName);
     login(userName, password);
-    if (user) {
+    
+
+//       setCheck(true)
+//       localStorage.setItem('rememberMe', userName);
+//   }
+  
+//   performanceHandler();
+//   blogShowing();
+// }
+// useEffect(() => {
+//   const rememberMe = localStorage.getItem('rememberMe')
+//   if (rememberMe){
+//       setCheck(true)
+//   }
+
+// }, []);
+
+//   return ( <>
+//   {check ? 
+//     <Box>
+//       <Router>
+//         <SidebarWithHeader>
+//           <Switch>
+//             <Route exact path="/">
+//               <Home remaining={remaining} performanceHandler={performanceHandler} perforPercentage={perforPercentage}performance={performance}blog = {blog}showingModel={showingModel} blogInfoHandler={blogInfoHandler} model={model} hidingModel={hidingModel}/>
+//             </Route>
+//             <Route exact path="/profile">
+//               <Profile />
+//             </Route>
+//             <Route exact path="/Attendance">
+//               <Attendance />
+//             </Route>
+//             <Route exact path="/SignUp">
+//               <SignUp />
+//             </Route>
+//             <Route exact path="/LeaveForm">
+//               <LeaveForm leavesHandler={leavesHandler} performanceHandler={performanceHandler}/>
+//             </Route>
+//           </Switch>
+//           <Box>
+//             <Footer></Footer>
+//           </Box>
+//         </SidebarWithHeader>
+//       </Router>
+//     </Box>:
+//     <LoginForm submitEvent={submitEvent}/>
+//   } 
+//   </>
+if (user) {
       setCheck(true);
       localStorage.setItem("rememberMe", userName);
     }
@@ -202,6 +322,7 @@ function App() {
         <LoginForm submitEvent={submitEvent} />
       )}
     </>
+
   );
 }
 

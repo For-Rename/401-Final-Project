@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useAuth } from "../contexts/auth";
 export default function Statistics(props) {
+
   const { sum_days_vac } = useAuth();
   console.log(sum_days_vac);
   return (
@@ -78,3 +79,4 @@ export default function Statistics(props) {
     </Box>
   );
 }
+
