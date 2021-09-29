@@ -33,6 +33,7 @@ function App() {
   const [leaves,setLeaves] = useState([]);
   const [remaining,setRemaining] = useState({});
   const { tokens } = useAuth();
+
   
   function config() {
 
@@ -52,13 +53,19 @@ function App() {
     setModel(false);
     
    }
+  
   function blogInfoHandler(inform){
-    // const response = await axios.post('backend_link', info);
+    // const response = await axios.post('backend_link', info,config());
     // setBlog(info => [...info, response.data])
     // console.log(inform);
-   
-    setBlog(info => [...info, inform])
+    blogShowing()
+    
     // console.log(blog);
+   }
+
+   async function blogShowing(){
+    // const response = await axios.get('backend_link', config());
+    // setBlog(info => [...info, response.data])
    }
    async function performanceHandler(){
     if (!tokens) {
@@ -82,7 +89,7 @@ function App() {
    useEffect(()=>{
     performance_percentage();
    
-    performanceHandler()
+   
     
    },[performance])
 
@@ -125,8 +132,9 @@ function App() {
 
    useEffect(()=>{
    
-
-    leavesHandler()
+   
+    leavesHandler();
+    
    },[])
 
 
@@ -142,7 +150,8 @@ const submitEvent = (event) => {
       localStorage.setItem('rememberMe', userName);
   }
   
-  performanceHandler()
+  performanceHandler();
+  blogShowing();
 }
 useEffect(() => {
   const rememberMe = localStorage.getItem('rememberMe')
