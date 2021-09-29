@@ -21,9 +21,9 @@ export class Attendances {
 // get a JSON Web Token from server
 export async function getToken(values) {
   const url = "http://localhost:8000/api/token/";
-  console.log(values);
+  // console.log(values);
   const response = await axios.post(url, values);
-  console.log(response);
+  // console.log(response);
   const refreshUrl = "http://localhost:8000/api/token/refresh";
   const refreshResponse = await axios.post(refreshUrl, {
     refresh: response.data.refresh,
@@ -41,9 +41,10 @@ export async function getToken(values) {
   return refreshResponse.data.access;
 }
 export async function fetchAttendance(url, token) {
-  const config = makeConfig(token);
+  const config = makeConfig(token.access);
+  // console.log(config);
   const response = await axios.get(url, config);
-  console.log(response);
+  // console.log(response);
   const attendances = response.data.map((info) => new Attendances(info));
   attendances.sort((a, b) => {
     if (a.user_id < b.user_id) return -1;
@@ -54,15 +55,39 @@ export async function fetchAttendance(url, token) {
   return attendances;
 }
 export async function postAttendance(token, values) {
-  const body = {
-    id: -1,
-    user_id: values.user_id,
-    check_in: values.check_in,
-    check_out: values.check_out,
-  };
   const config = makeConfig(token);
-  const response = await axios.post(apiUrl, body, config);
-  return response.data;
+  const lastattendance = await axios.get(
+    "http://localhost:8000/api/hrboost/lastattendance/" + values.user_id + "/",
+    config
+  );
+  console.log("lastattendance", lastattendance.data[0]);
+  if (lastattendance.data[0].check_out) {
+    const body = {
+      id: -1,
+      user_id: values.user_id,
+      check_in: values.check_in,
+    };
+    console.log(body);
+
+    const response = await axios.post(apiUrl, body, config);
+    return response.data;
+  } else {
+    const body = {
+      user_id: lastattendance.data[0].user_id,
+      check_in: lastattendance.data[0].check_in,
+      check_out: values.check_out,
+    };
+    // console.log(body);
+
+    const response = await axios.put(
+      "http://localhost:8000/api/hrboost/attendanceupdate/" +
+        lastattendance.data[0].id +
+        "/",
+      body,
+      config
+    );
+    return response.data;
+  }
 }
 function makeConfig(token) {
   return {
