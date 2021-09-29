@@ -28,7 +28,8 @@ export default function UpdateProfile({ update,check , userinfo}) {
       dep_id: 1,
       role_id: 2,
     };
-      updateResource(`http://localhost:8000/api/hrboost/usersupdate/${id}/`, obj).then(res=>{
+      updateResource(`http://localhost:8000/api/hrboost/usersupdate/1/`, obj).then(res=>{
+        console.log('goodres',res);
         update(res);
 
       })

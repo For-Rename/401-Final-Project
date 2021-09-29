@@ -19,13 +19,16 @@ export default function Profile() {
 
   const [data, setData] = useState({});
 
+  
+
   useEffect(() => {
 
     const id = localStorage.getItem("id");
     axios
       .get(`http://localhost:8000/api/hrboost/userinfo/${id}/`, config())
       .then((res) => {
-        setData(res.data[1]);
+        console.log('resres',res.data);
+        setData(res.data[0]);
       });
 
     function config() {
@@ -47,8 +50,6 @@ export default function Profile() {
 
   return (
     <>
-
-
       <p> birth date :{data.birth_date}</p> 
       <p>image :{data.image}</p>
       <p>address:{data.address}</p>
@@ -58,7 +59,6 @@ export default function Profile() {
       <p>available_leave_days:{data.available_leave_days}</p>
       <p>evaluation:{data.evaluation}</p>
       <p>pre_evaluation:{data.pre_evaluation}</p>
-
 
       <button onClick={Update}> Update</button>
       {check && <UpdateProfile update={setData} check = {setCheck} userinfo = {data} />}
