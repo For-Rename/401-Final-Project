@@ -19,18 +19,34 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import Home from "./pages/Home";
+
+// import Log from "./components/LoginForm";
+// import SignUp from './components/SignUp';
+
+function App() {
+
+  
+
+
+  
+
+
+
 function App() {
 
  
   const { tokens, user, login, sum_days_vac } = useAuth();
   const [check, setCheck] = useState(false);
-  const [performance, setPerformance] = useState({});
+  const [performance, setPerformance] = useState({ evaluation: 0,
+    prev_evaluation: 0});
   const [perforPercentage, setPerformancePercentage] = useState(0);
   const [model, setModel] = useState(false);
   const [blog, setBlog] = useState([]);
 
-  // const [leaves, setLeaves] = useState([]);
-  // const [remaining, setRemaining] = useState({});
+  const [leaves, setLeaves] = useState([]);
+  const [remaining, setRemaining] = useState({ hours: 120 , days: 21 });
+  
+
 
 
   function config() {
@@ -43,15 +59,61 @@ function App() {
 
 
 
+  
+  // function blogInfoHandler(inform){
+  //   // const response = await axios.post('backend_link', info,config());
+  //   // setBlog(info => [...info, response.data])
+  //   // console.log(inform);
+ 
+    
+  //   // console.log(blog);
+  //  }
+
+   async function blogShowing(){
+    if (!tokens) {
+      return;
+  }
+    const response = await axios.get('http://localhost:8000/api/hrboost/blogs/‏', config());
+    console.log(response.data);
+    setBlog(info => [...info, response.data[0]])
+   }
+   async function leavesHandler(){
+      if (!tokens) {
+        return;
+    }
+      const response = await axios.get('http://127.0.0.1:8000/api/hrboost/vacations/ '+ user.id + "/",config());
+      console.log(response.data[0]);
+      if (!tokens) {
+        return;
+    }
+  
+    const obj = {
+      leaving_hours:response.data[0].num_hours,
+      leaving_days: response.data[0].num_days,
+    }
+      setLeaves( info => [...info, obj])
+     }
+
+
   function showingModel() {
     setModel(true);
   }
   function hidingModel() {
     setModel(false);
   }
-  function blogInfoHandler(inform) {
 
-    setBlog((info) => [...info, inform]);
+  async function blogInfoHandler(inform) {
+    if (!tokens) {
+      return;
+    }
+     await axios.post('http://localhost:8000/api/hrboost/blogs/‏', inform, config());
+    // setBlog(info => [...info, response.data])
+    // console.log(inform);
+
+    // setBlog((info) => [...info, inform]);
+    blogShowing()
+    // console.log(blog);
+
   }
   async function performanceHandler() {
     if (!tokens) {
@@ -68,6 +130,7 @@ function App() {
     };
     setPerformance(per);
   }
+   
   function performance_percentage() {
     const total = performance.evaluation - performance.prev_evaluation;
 
@@ -77,30 +140,68 @@ function App() {
   useEffect(() => {
     performance_percentage();
 
-    performanceHandler();
-  }, [performance]);
 
- 
+   
+    performanceHandler()
+    
+   },[performance])
+
+   useEffect(()=>{
+   
+   
+    performanceHandler()
+    
+   },[])
+   
+  
+
+
+  
+
+  function remaining_calc() {
+    let sum_hours = 0;
+    let sum_days = 0;
+    for (let y = 0; y < leaves.length; y++) {
+      sum_hours = sum_hours + leaves[y].leaving_hours;
+      sum_days = sum_days + leaves[y].leaving_days;
+    }
+    const total = { hours: 20 - sum_hours, days: 21 - sum_days };
+    console.log(performance);
+    setRemaining(total);
+  }
+  useEffect(() => {
+    // leavesHandler();
+    remaining_calc();
+  }, [leaves]);
+
 
   const submitEvent = (event) => {
     event.preventDefault();
     let userName = event.target.user.value;
     let password = event.target.password.value;
     login(userName, password);
-   
-if (user) {
-      setCheck(true);
-      localStorage.setItem("rememberMe", userName);
-      localStorage.setItem('tokens', tokens.access);
-      localStorage.setItem('id', user.id);
-    }
-  };
-  useEffect(() => {
-    const rememberMe = localStorage.getItem("rememberMe");
-    if (rememberMe) {
-      setCheck(true);
-    }
-  }, []);
+    
+
+      setCheck(true)
+      localStorage.setItem('rememberMe', userName);
+       localStorage.setItem('tokens', tokens.access);
+       localStorage.setItem('id', user.id);
+  
+    performanceHandler();
+    blogShowing();
+    leavesHandler()
+}
+useEffect(() => {
+  const rememberMe = localStorage.getItem('rememberMe')
+  if (rememberMe){
+      setCheck(true)
+  }
+
+}, []);
+
+
+
+
 
   return (
     <>
@@ -111,7 +212,7 @@ if (user) {
               <Switch>
                 <Route exact path="/">
                   <Home
-                    // remaining={remainingdays}
+                    remaining={remaining}
                     performanceHandler={performanceHandler}
                     perforPercentage={perforPercentage}
                     performance={performance}
@@ -120,6 +221,8 @@ if (user) {
                     blogInfoHandler={blogInfoHandler}
                     model={model}
                     hidingModel={hidingModel}
+                    leavesHandler={ leavesHandler}
+                    blogShowing={blogShowing}
                   />
                 </Route>
                 <Route exact path="/profile">

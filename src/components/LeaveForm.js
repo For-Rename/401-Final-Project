@@ -29,6 +29,9 @@ export default function Leave(props) {
   const id = localStorage.getItem('id')
   const onSubmit = (result) => {
     const obj = {
+
+      num_hours: 0,
+      num_days : 0,
       applied_date: result.applied_date, 
       start_date: result.start_date,
       end_date: result.end_date,
@@ -77,6 +80,12 @@ export default function Leave(props) {
       <label className="label">end_date</label>
       <input {...register("end_date")} type="date"  className="input"/>
 
+      <label className="label">Number of Days</label>
+      <input {...register("num_days")} type="number"  className="input"/>
+      <label className="label">Number of Hours (in case of Hourly leave)</label>
+      <input {...register("num_hours")} type="number"  className="input"/>
+
+
       <label className="label">start_time</label>
       <input {...register("start_time")} type="time"  className="input"/>
 
@@ -87,6 +96,7 @@ export default function Leave(props) {
     <input {...register("description")} type='txet' className="label"/>
 
 
+
       <label className="label">Select Leave type</label>
       <select {...register("leaveType")} placeholder="Select Department"  className="input" > 
         <option value="">Select Leave Type</option>
@@ -94,6 +104,7 @@ export default function Leave(props) {
         <option value="Hourly">Hourly</option>
         <option value="Sick">Sick Leave</option>
       </select>
+
     
       <input type="submit" />
       </form>
@@ -108,6 +119,7 @@ export default function Leave(props) {
           </Button>
         </Modal.Footer>
       </Modal>}
+
     </div>
 
   );
