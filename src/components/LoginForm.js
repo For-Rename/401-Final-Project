@@ -10,20 +10,24 @@ export default function Login() {
 
 
     const [check ,setCheck] = useState(false)
-    const { user, login } = useAuth();
+    const { user, login ,tokens } = useAuth();
     
     const submitEvent = (event)=>{
         event.preventDefault();
-        let userName = event.target.Name.value
+        let userName = event.target.name.value
         let password = event.target.password.value
         login(userName,password)
         if (user){
             setCheck(true)
             localStorage.setItem('rememberMe', userName);
+            localStorage.setItem('tokens', tokens.access);
+
+            localStorage.setItem('id', user.id);
         }
     }
 
     useEffect(() => {
+
         const rememberMe = localStorage.getItem('rememberMe')
         if (rememberMe){
             setCheck(true)
@@ -41,7 +45,7 @@ export default function Login() {
                 <div class="inset">
                     <p>
                         <label for="User">User Name</label>
-                        <input type="text" name="Name" id="User" placeholder="User Name"/>
+                        <input type="text" name="name" id="User" placeholder="User Name"/>
                     </p>
                     <p>
                         <label for="password">PASSWORD</label>
