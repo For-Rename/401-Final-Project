@@ -1,41 +1,26 @@
-import React,{useEffect, useState} from 'react';
 import Statistics from "../components/Statistics";
 
-import Blog  from "../components/Blog"
-import axios from 'axios';
-import BlogForm from '../components/BlogForm';
-function Home(){
-  const [performance,setPerformance] = useState([]);
-  const [model,setModel] = useState(false);
-  const [blog,setBlog] = useState([]);
-  function showingModel(){
+import Blog from "../components/Blog";
 
-   setModel(true)
-  }
-  function hidingModel(){
+import BlogForm from "../components/BlogForm";
 
-    setModel(false)
-   }
-  function blogInfoHandler(info){
-    // const response = await axios.post('backend_link', info);
-    // setBlog(info => [...info, response.data])
-    console.log(info);
-   }
-   async function performanceHandler(info){
-    const response = await axios.get('backend_link');
-    setPerformance(info => [...info, response.data])
-   }
-    return (
-      <>
-      
-        
-         <Statistics performance={performance}></Statistics>
-         <Blog blog = {blog}showingModel={showingModel}></Blog>
-         <BlogForm  blogInfoHandler={blogInfoHandler} model={model} hidingModel={hidingModel}></BlogForm>
-   
-       </>
-    );
-
+function Home(props) {
+  return (
+    <>
+      <Statistics
+        // remainingdays={props.remainingdays}
+        performanceHandler={props.performanceHandler}
+        perforPercentage={props.perforPercentage}
+        performance={props.performance}
+      ></Statistics>
+      <Blog blog={props.blog} showingModel={props.showingModel}></Blog>
+      <BlogForm
+        blogInfoHandler={props.blogInfoHandler}
+        model={props.model}
+        hidingModel={props.hidingModel}
+      ></BlogForm>
+    </>
+  );
 }
 
 export default Home;

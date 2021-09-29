@@ -1,11 +1,11 @@
 import {
-  Modal, ModalContent, ModalCloseButton, ModalBody, ModalHeader, Button, Checkbox,
+  Modal, ModalContent, ModalCloseButton, ModalBody, ModalHeader, Button,
   Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  Form,
+  
   
   Stack,
 
@@ -15,11 +15,15 @@ import {
 export default function BlogForm(props) {
   
   function formHandler(event) {
-    // console.log(event);
+    
     event.preventDefault();
+    console.log();
     const formInfo = {
+      name: 'haya',
       role: event.target.role.value,
-      content: event.target.content.value
+      content:event.target.content.value,
+    
+      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80'
     }
     props.blogInfoHandler(formInfo);
 
@@ -38,8 +42,8 @@ export default function BlogForm(props) {
               <Stack spacing={4} w={'full'} >
                 <Heading fontSize={'2xl'}> </Heading>
               
-                  {/* <Form>  */}
-                    <FormControl id="role"v>
+                  <form onSubmit={(event)=>formHandler(event)}> 
+                    <FormControl id="role">
                       <FormLabel >Role</FormLabel>
                       <Input type ='text' />
                     </FormControl>
@@ -49,11 +53,11 @@ export default function BlogForm(props) {
                     </FormControl>
                    
                       
-                      <Button colorScheme={'blue'} variant={'solid'} onClick={(event) => formHandler(event)}>
+                      <Button colorScheme={'blue'} variant={'solid'}type = "submit" onClick={() => props.hidingModel()} >
                         Post
                       </Button>
                
-                  {/* </Form> */}
+                  </form>
               
               </Stack>
             </Flex>

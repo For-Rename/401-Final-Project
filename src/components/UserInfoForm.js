@@ -1,4 +1,4 @@
-import './SignUp.scss'
+// import './SignUp.scss'
 import useResource from '../hooks/useResource'
 
 import React from 'react'
