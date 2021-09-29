@@ -7,12 +7,11 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function Profile() {
-  const userinfo = JSON.parse(localStorage.getItem("userinfo"));
+  const userinfo = JSON.parse(localStorage.getItem("user_id"));
 
-  console.log(userinfo["id"]);
+  console.log(userinfo);
 
-  const { resources, createResource, updateResource, fetchResource } =
-    useResource();
+  const { updateResource } = useResource();
   const { user, login, tokens } = useAuth();
 
   const [check, setCheck] = useState(false);
@@ -20,19 +19,14 @@ export default function Profile() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-
-    const id = localStorage.getItem("id");
     axios
-      .get(`http://localhost:8000/api/hrboost/userinfo/${id}/`, config())
+      .get(`http://localhost:8000/api/hrboost/userinfo/${userinfo}/`, config())
       .then((res) => {
-        setData(res.data[1]);
+        setData(res.data[0]);
       });
 
     function config() {
-
       const tokensAccess = localStorage.getItem("tokens");
-
-
       return {
         headers: {
           Authorization: "Bearer " + tokensAccess,
@@ -47,9 +41,7 @@ export default function Profile() {
 
   return (
     <>
-
-
-      <p> birth date :{data.birth_date}</p> 
+      <p> birth date :{data.birth_date}</p>
       <p>image :{data.image}</p>
       <p>address:{data.address}</p>
       <p>phone_num:{data.phone_num}</p>
@@ -59,9 +51,10 @@ export default function Profile() {
       <p>evaluation:{data.evaluation}</p>
       <p>pre_evaluation:{data.pre_evaluation}</p>
 
-
       <button onClick={Update}> Update</button>
-      {check && <UpdateProfile update={setData} check = {setCheck} userinfo = {data} />}
+      {check && (
+        <UpdateProfile update={setData} check={setCheck} userinfo={data} />
+      )}
     </>
   );
 }
