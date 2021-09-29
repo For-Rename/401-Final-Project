@@ -2,13 +2,7 @@ import { useState, useEffect } from "react";
 import useSWR from "swr";
 import Table from "./Table";
 import { Box } from "@chakra-ui/react";
-import {
-  Attendances,
-  postAttendance,
-  fetchAttendance,
-  apiUrl,
-  setAttendance,
-} from "../api";
+import { Attendances, postAttendance, fetchAttendance, apiUrl } from "../api";
 import { useAuth } from "../../contexts/auth";
 
 export default function CDate() {
