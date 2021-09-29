@@ -38,9 +38,11 @@ function App() {
   const [remaining, setRemaining] = useState({ hours: 120, days: 21 });
 
   function config() {
+    const token = localStorage.getItem("tokens");
+    console.log(token);
     return {
       headers: {
-        Authorization: "Bearer " + tokens.access,
+        Authorization: "Bearer " + token,
       },
     };
   }
@@ -58,7 +60,7 @@ function App() {
       return;
     }
     const response = await axios.get(
-      "http://localhost:8000/api/hrboost/blogs/‏",
+      "http://localhost:8000/api/hrboost/blogs/",
       config()
     );
     console.log(response.data);
@@ -69,7 +71,7 @@ function App() {
       return;
     }
     const response = await axios.get(
-      "http://127.0.0.1:8000/api/hrboost/vacations/ " + user.id + "/",
+      "http://127.0.0.1:8000/api/hrboost/vacations/" + user.id + "/",
       config()
     );
     console.log(response.data[0]);
@@ -92,11 +94,14 @@ function App() {
   }
 
   async function blogInfoHandler(inform) {
-    if (!tokens) {
-      return;
-    }
+    const token = localStorage.getItem("tokens");
+    console.log("token ", token);
+    console.log("from blog handler", inform);
+    // if (!tokens) {
+    //   return;
+    // }
     await axios.post(
-      "http://localhost:8000/api/hrboost/blogs/‏",
+      "http://localhost:8000/api/hrboost/blogs/",
       inform,
       config()
     );
