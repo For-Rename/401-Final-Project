@@ -7,7 +7,7 @@ import SidebarWithHeader from "./components/SideBar";
 import Footer from "./components/Footer";
 
 import { Box } from "@chakra-ui/layout";
-import Profile from "./pages/Profile";
+import Profile from "./components/Profile";
 
 import LoginForm from "./components/LoginForm";
 import axios from "axios";

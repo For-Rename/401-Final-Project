@@ -53,20 +53,22 @@ export function AuthProvider(props) {
     const response = await axios.post(tokenUrl, obj);
 
     const decodedAccess = jwt.decode(response.data.access);
-    // const sum_days_vac = leavesHandler(
-    //   response.data.access,
-    //   decodedAccess.user_id
-    // );
+
+    const userinfo = await axios.get(
+      `http://localhost:8000/api/hrboost/userinfo/${decodedAccess.user_id}/`,
+      makeConfig(response.data.access)
+    );
+
+    localStorage.setItem("userinfo", JSON.stringify(userinfo.data[0]));
+
     const newState = {
       tokens: response.data,
-      // sum_days_vac: sum_days_vac,
       user: {
         username: decodedAccess.username,
         email: decodedAccess.email,
         id: decodedAccess.user_id,
       },
     };
-
     setState((prevState) => ({ ...prevState, ...newState }));
   }
   function logout() {

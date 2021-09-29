@@ -42,6 +42,7 @@ import hrmact from "../assets/hrmact-logo.png";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, href: "/" },
+  { name: "Profile", icon: FiTrendingUp , href: "/Profile"  },
   { name: "Performance", icon: FiTrendingUp },
   { name: "My Team", icon: FiCompass },
   { name: "Leaves", icon: FiBriefcase, href: "/LeaveForm" },
