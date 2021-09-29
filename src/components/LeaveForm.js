@@ -25,10 +25,8 @@ export default function Leave(props) {
   const [users] = useUsers();
   const onSubmit = (result) => {
     const id = localStorage.getItem('rememberMe')
-
-  
     const obj = {
-      applied_date: result.start_date,
+      applied_date: result.applied_date,
       start_date: "2021-09-26",
       end_date: "2021-09-27",
       start_time:'12:00:00',
@@ -66,7 +64,7 @@ export default function Leave(props) {
       <label className="label">Add Leave description</label>
     <input {...register("description")} type='txet' className="label"/>
       <label className="label">start_date</label>
-      <input {...register("start_date")} type="date" className="input"/>
+      <input {...register("applied_date")} type="date" className="input"/>
       <label className="label">end_date</label>
       <input {...register("end_date")} type="date"  className="input"/>
       <label className="label">Select Leave type</label>
@@ -76,6 +74,7 @@ export default function Leave(props) {
         <option value="Hourly">Hourly</option>
         <option value="Sick">Sick Leave</option>
       </select>
+    
    
 {/* 
       <ul>
@@ -89,8 +88,8 @@ export default function Leave(props) {
         ))}
       </ul> */}
       <p>{result}</p>
-      <input type="submit" /> */}
-   
+      <input type="submit" />
+      </form>
     <Flex
       minH={'100vh'}
       align={'center'}
