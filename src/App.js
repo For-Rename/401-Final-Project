@@ -23,7 +23,19 @@ import Home from "./pages/Home";
 // import Log from "./components/LoginForm";
 // import SignUp from './components/SignUp';
 
+
+
+  
+
+
+  
+
+
+
 function App() {
+
+ 
+
   const { tokens, user, login, sum_days_vac } = useAuth();
   const [check, setCheck] = useState(false);
   const [performance, setPerformance] = useState({
@@ -46,6 +58,7 @@ function App() {
       },
     };
   }
+
 
   // function blogInfoHandler(inform){
   //   // const response = await axios.post('backend_link', info,config());
@@ -137,12 +150,24 @@ function App() {
   useEffect(() => {
     performance_percentage();
 
-    performanceHandler();
-  }, [performance]);
 
-  useEffect(() => {
-    performanceHandler();
-  }, []);
+   
+    performanceHandler()
+    
+   },[performance])
+
+   useEffect(()=>{
+   
+   
+    performanceHandler()
+    
+   },[])
+   
+  
+
+
+  
+
 
   function remaining_calc() {
     let sum_hours = 0;
@@ -165,6 +190,7 @@ function App() {
     let userName = event.target.user.value;
     let password = event.target.password.value;
     login(userName, password);
+
 
     setCheck(true);
     localStorage.setItem("rememberMe", userName);

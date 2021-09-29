@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/auth";
 // export const apiUrl = "http://localhost:8000/api/hrboost";
 
 export default function useResource() {
+
   const { tokens, logout } = useAuth();
 
   //   const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
@@ -50,6 +51,7 @@ export default function useResource() {
       return data.data;
     } catch (error) {
       handleError(error);
+
     }
   }
 
