@@ -23,12 +23,11 @@ import { CheckIcon } from '@chakra-ui/icons';
 
 
 export default function Profile() {
-  const userinfo = JSON.parse(localStorage.getItem("userinfo"));
+  const userinfo = JSON.parse(localStorage.getItem("user_id"));
 
-  console.log(userinfo["id"]);
+  console.log(userinfo);
 
-  const { resources, createResource, updateResource, fetchResource } =
-    useResource();
+  const { updateResource } = useResource();
   const { user, login, tokens } = useAuth();
 
   const [check, setCheck] = useState(false);
@@ -36,6 +35,7 @@ export default function Profile() {
   const [data, setData] = useState({});
 
   useEffect(() => {
+
 
     // const id = localStorage.getItem("id");
     // axios
@@ -53,11 +53,15 @@ export default function Profile() {
         setData(data_set)
       },[]);
 
+//     axios
+//       .get(`http://localhost:8000/api/hrboost/userinfo/${userinfo}/`, config())
+//       .then((res) => {
+//         setData(res.data[0]);
+//       });
+
+
     function config() {
-
       const tokensAccess = localStorage.getItem("tokens");
-
-
       return {
         headers: {
           Authorization: "Bearer " + tokensAccess,
@@ -72,6 +76,7 @@ export default function Profile() {
 
   return (
     <>
+
       <Box p={4}>
         <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
           <Heading fontSize={'3xl'}>This is Your Informations</Heading>
@@ -181,6 +186,9 @@ export default function Profile() {
         Update
       </Button>
       {/* <p> birth date :{data.birth_date}</p> 
+
+      <p> birth date :{data.birth_date}</p>
+
       <p>image :{data.image}</p>
       <p>address:{data.address}</p>
       <p>phone_num:{data.phone_num}</p>
@@ -188,9 +196,18 @@ export default function Profile() {
       <p>job_title:{data.job_title}</p>
       <p>available_leave_days:{data.available_leave_days}</p>
       <p>evaluation:{data.evaluation}</p>
+
       <p>pre_evaluation:{data.pre_evaluation}</p> */}
 
  
+
+      <p>pre_evaluation:{data.pre_evaluation}</p>
+
+      <button onClick={Update}> Update</button>
+      {check && (
+        <UpdateProfile update={setData} check={setCheck} userinfo={data} />
+      )}
+
     </>
   );
 }

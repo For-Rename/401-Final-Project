@@ -42,7 +42,7 @@ import hrmact from "../assets/hrmact-logo.png";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, href: "/" },
-  { name: "Profile", icon: FiTrendingUp , href: "/Profile"  },
+  { name: "Profile", icon: FiTrendingUp, href: "/Profile" },
   { name: "Performance", icon: FiTrendingUp },
   { name: "My Team", icon: FiCompass },
   { name: "Leaves", icon: FiBriefcase, href: "/LeaveForm" },
@@ -209,7 +209,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                     {localStorage.getItem("rememberMe")}
                   </Text>
                   <Text fontSize="xs" color="gray.600">
-                    Employee
+                    HR
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
