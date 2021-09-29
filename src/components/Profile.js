@@ -8,26 +8,30 @@ import { useEffect } from "react";
 
 export default function Profile() {
   const userinfo = JSON.parse(localStorage.getItem("userinfo"));
-  console.log(userinfo[0]["id"]);
+
+  console.log(userinfo["id"]);
+
   const { resources, createResource, updateResource, fetchResource } =
     useResource();
   const { user, login, tokens } = useAuth();
 
   const [check, setCheck] = useState(false);
+
   const [data, setData] = useState({});
 
   useEffect(() => {
+
     const id = localStorage.getItem("id");
-    console.log("resources1", resources);
     axios
       .get(`http://localhost:8000/api/hrboost/userinfo/${id}/`, config())
       .then((res) => {
-        setData(res.data);
+        setData(res.data[1]);
       });
 
     function config() {
+
       const tokensAccess = localStorage.getItem("tokens");
-      console.log("tokensAccess", tokensAccess);
+
 
       return {
         headers: {
@@ -43,20 +47,21 @@ export default function Profile() {
 
   return (
     <>
-      {console.log(data)}
-      <p>{userinfo[0]["birth_date"]}</p>
-      <p>{userinfo[0]["image"]}</p>
-      <p>{userinfo[0]["address"]}</p>
-      <p>{userinfo[0]["phone_num"]}</p>
-      <p>{userinfo[0]["gender"]}</p>
-      <p>{userinfo[0]["social_status"]}</p>
-      <p>{userinfo[0]["job_title"]}</p>
-      <p>{userinfo[0]["available_leave_days"]}</p>
-      <p>{userinfo[0]["evaluation"]}</p>
-      <p>{userinfo[0]["pre_evaluation"]}</p>
+
+
+      <p> birth date :{data.birth_date}</p> 
+      <p>image :{data.image}</p>
+      <p>address:{data.address}</p>
+      <p>phone_num:{data.phone_num}</p>
+      <p>social_status:{data.social_status}</p>
+      <p>job_title:{data.job_title}</p>
+      <p>available_leave_days:{data.available_leave_days}</p>
+      <p>evaluation:{data.evaluation}</p>
+      <p>pre_evaluation:{data.pre_evaluation}</p>
+
 
       <button onClick={Update}> Update</button>
-      {check && <UpdateProfile />}
+      {check && <UpdateProfile update={setData} check = {setCheck} userinfo = {data} />}
     </>
   );
 }

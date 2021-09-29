@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import Home from "./pages/Home";
+
 // import Log from "./components/LoginForm";
 // import SignUp from './components/SignUp';
 
@@ -30,6 +31,10 @@ function App() {
   
 
 
+
+function App() {
+
+ 
   const { tokens, user, login, sum_days_vac } = useAuth();
   const [check, setCheck] = useState(false);
   const [performance, setPerformance] = useState({ evaluation: 0,
@@ -37,9 +42,11 @@ function App() {
   const [perforPercentage, setPerformancePercentage] = useState(0);
   const [model, setModel] = useState(false);
   const [blog, setBlog] = useState([]);
+
   const [leaves, setLeaves] = useState([]);
   const [remaining, setRemaining] = useState({ hours: 120 , days: 21 });
   
+
 
 
   function config() {
@@ -49,6 +56,7 @@ function App() {
       },
     };
   }
+
 
 
   
@@ -86,13 +94,14 @@ function App() {
       setLeaves( info => [...info, obj])
      }
 
+
   function showingModel() {
     setModel(true);
-    //  leavesHandler()
   }
   function hidingModel() {
     setModel(false);
   }
+
   async function blogInfoHandler(inform) {
     if (!tokens) {
       return;
@@ -104,6 +113,7 @@ function App() {
     // setBlog((info) => [...info, inform]);
     blogShowing()
     // console.log(blog);
+
   }
   async function performanceHandler() {
     if (!tokens) {
@@ -129,6 +139,7 @@ function App() {
   }
   useEffect(() => {
     performance_percentage();
+
 
    
     performanceHandler()
@@ -163,17 +174,18 @@ function App() {
     remaining_calc();
   }, [leaves]);
 
+
   const submitEvent = (event) => {
     event.preventDefault();
     let userName = event.target.user.value;
     let password = event.target.password.value;
-    console.log(userName);
     login(userName, password);
     
 
       setCheck(true)
       localStorage.setItem('rememberMe', userName);
-  
+       localStorage.setItem('tokens', tokens.access);
+       localStorage.setItem('id', user.id);
   
     performanceHandler();
     blogShowing();
@@ -186,6 +198,7 @@ useEffect(() => {
   }
 
 }, []);
+
 
 
 

@@ -47,7 +47,16 @@ export default function useResource() {
         }
     }
 
-    async function updateResource(resource) {
+    async function updateResource(api,resource) {
+        try {
+            const url = api
+           const data= await axios.put(url, resource, config());
+            console.log('work',data);
+            mutate(); 
+            return data.data
+        } catch (error) {
+            handleError(error);
+        }
 
     }
 
