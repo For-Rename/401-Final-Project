@@ -13,10 +13,8 @@ import { useAuth } from "../../contexts/auth";
 
 export default function CDate() {
   // const dt = null;
-  const { tokens, user } = useAuth();
-  if (tokens.access) {
-    console.log(tokens.access);
-  }
+  const { user } = useAuth();
+  const tokens = JSON.parse(localStorage.getItem("tokens"));
   // const [cdate,setDate] = useState(dt);
   // const handelDate = () =>{
   //   let dt = new Date().toLocaleString();
