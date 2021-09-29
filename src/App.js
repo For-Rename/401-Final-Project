@@ -32,7 +32,7 @@ function App() {
   const [blog,setBlog] = useState([]);
   const [leaves,setLeaves] = useState([]);
   const [remaining,setRemaining] = useState({});
-  const { tokens } = useAuth()
+  const { tokens } = useAuth();
   
   function config() {
 
@@ -49,7 +49,8 @@ function App() {
   }
   function hidingModel(){
 
-    setModel(false)
+    setModel(false);
+    
    }
   function blogInfoHandler(inform){
     // const response = await axios.post('backend_link', info);
@@ -59,29 +60,38 @@ function App() {
     setBlog(info => [...info, inform])
     // console.log(blog);
    }
-   function performanceHandler(){
-  //   if (!tokens) {
-  //     return;
-  // }
-    // const response = await axios.get('http://127.0.0.1:8000/api/hrboost/users/',config());
-    // console.log(response.data);
-    // setPerformance( response.data)
-    const per = {evaluation:90,
-    prev_evaluation:80}
+   async function performanceHandler(){
+    if (!tokens) {
+      return ;
+  }
+    const response = await axios.get('http://localhost:8000/api/hrboost/users/3/',config());
+    console.log(response.data);
+    setPerformance( response.data)
+    console.log(performance);
+    // const per = {evaluation:90,
+    // prev_evaluation:80}
 
-    setPerformance(per)
+    // setPerformance(response.data)
    }
    function performance_percentage(){
 
-    const total = (performance.evaluation - performance.prev_evaluation );
+    const total = (performance.evaluation - performance.pre_evaluation );
     console.log(performance);
     setPerformancePercentage(total)
    }
    useEffect(()=>{
     performance_percentage();
-
-    // performanceHandler()
+   
+    performanceHandler()
+    
    },[performance])
+
+   useEffect(()=>{
+   
+   
+    performanceHandler()
+    
+   },[])
    
    async function leavesHandler(){
   //   if (!tokens) {
@@ -113,6 +123,12 @@ function App() {
     // leavesHandler()
    },[leaves])
 
+   useEffect(()=>{
+   
+
+    leavesHandler()
+   },[])
+
 
 
 const submitEvent = (event) => {
@@ -125,6 +141,8 @@ const submitEvent = (event) => {
       setCheck(true)
       localStorage.setItem('rememberMe', userName);
   }
+  
+  performanceHandler()
 }
 useEffect(() => {
   const rememberMe = localStorage.getItem('rememberMe')

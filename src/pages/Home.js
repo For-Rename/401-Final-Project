@@ -13,7 +13,7 @@ function Home(props){
       <>
       
         
-         <Statistics remaining={props.remaining} performanceHandler={props.performanceHandler} perforPercentage={props.perforPercentage}performance={performance}></Statistics>
+         <Statistics remaining={props.remaining} performanceHandler={props.performanceHandler} perforPercentage={props.perforPercentage} performance={props.performance}></Statistics>
          <Blog blog = {props.blog}showingModel={props.showingModel}></Blog>
          <BlogForm  blogInfoHandler={props.blogInfoHandler} model={props.model} hidingModel={props.hidingModel}></BlogForm>
    
