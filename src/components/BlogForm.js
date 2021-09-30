@@ -16,13 +16,14 @@ import {
 import { useAuth } from "../contexts/auth";
 
 export default function BlogForm(props) {
-  const { tokens, user, login } = useAuth();
+  const { tokens, user, login,  } = useAuth();
   function formHandler(event) {
     event.preventDefault();
     console.log(user);
     const user_id = JSON.parse(localStorage.getItem("userinfo"));
     console.log(user_id["id"]);
     const formInfo = {
+
       user_id: user_id["id"],
       role: event.target.role.value,
       content: event.target.content.value,
@@ -33,9 +34,9 @@ export default function BlogForm(props) {
     console.log("fromblogform", formInfo);
 
     props.blogInfoHandler(formInfo);
-
+  
     props.performanceHandler();
-    // props.leavesHandler();
+    props.leavesHandler();
   }
 
   return (
