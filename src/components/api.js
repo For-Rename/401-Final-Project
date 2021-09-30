@@ -1,6 +1,7 @@
 import axios from "axios";
 // import jwt from "jsonwebtoken";
-export const apiUrl = "http://localhost:8000/api/hrboost/attendancelist/";
+export const apiUrl =
+  "https://hrboost-back.herokuapp.com/api/hrboost/attendancelist/";
 export class Attendances {
   constructor(info) {
     this.user_id = info.user_id;
@@ -18,11 +19,11 @@ export class Attendances {
 }
 // get a JSON Web Token from server
 export async function getToken(values) {
-  const url = "http://localhost:8000/api/token/";
+  const url = "https://hrboost-back.herokuapp.com/api/token/";
   // console.log(values);
   const response = await axios.post(url, values);
   // console.log(response);
-  const refreshUrl = "http://localhost:8000/api/token/refresh";
+  const refreshUrl = "https://hrboost-back.herokuapp.com/api/token/refresh";
   const refreshResponse = await axios.post(refreshUrl, {
     refresh: response.data.refresh,
   });
@@ -57,7 +58,9 @@ export async function postAttendance(values) {
   const user_id = JSON.parse(localStorage.getItem("userinfo"));
   console.log(user_id["id"]);
   const lastattendance = await axios.get(
-    "http://localhost:8000/api/hrboost/lastattendance/" + user_id["id"] + "/",
+    "https://hrboost-back.herokuapp.com/api/hrboost/lastattendance/" +
+      user_id["id"] +
+      "/",
     config
   );
   console.log("lastattendance", lastattendance.data[0]);
@@ -88,7 +91,7 @@ export async function postAttendance(values) {
     // console.log(body);
 
     const response = await axios.put(
-      "http://localhost:8000/api/hrboost/attendanceupdate/" +
+      "https://hrboost-back.herokuapp.com/api/hrboost/attendanceupdate/" +
         lastattendance.data[0].id +
         "/",
       body,

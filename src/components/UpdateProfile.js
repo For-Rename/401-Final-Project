@@ -30,7 +30,7 @@ export default function UpdateProfile({ update, check, userinfo }) {
       role_id: 2,
     };
     updateResource(
-      `http://localhost:8000/api/hrboost/usersupdate/${user_info_id["id"]}/`,
+      `https://hrboost-back.herokuapp.com/api/hrboost/usersupdate/${user_info_id["id"]}/`,
       obj
     ).then((res) => {
       update(res);
