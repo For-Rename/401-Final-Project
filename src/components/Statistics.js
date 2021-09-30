@@ -11,8 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { useAuth } from "../contexts/auth";
 export default function Statistics(props) {
-
   const { sum_days_vac } = useAuth();
+  const userinfo = JSON.parse(localStorage.getItem("userinfo"));
+  console.log("eva", userinfo);
   console.log(sum_days_vac);
   return (
     <Box maxW="7xl" mx={"auto"} pt={10} px={{ base: 2, sm: 12, md: 17 }}>
@@ -34,7 +35,7 @@ export default function Statistics(props) {
           padding={1}
         >
           <StatLabel>Performance</StatLabel>
-          <StatNumber>{props.performance.evaluation} %</StatNumber>
+          <StatNumber>{userinfo?.evaluation} %</StatNumber>
           {props.perforPercentage > 0 ? (
             <StatHelpText>
               <StatArrow type="increase" />
@@ -56,10 +57,10 @@ export default function Statistics(props) {
         >
           <StatLabel>Vacations</StatLabel>
           <StatNumber>{props.remaining.days} Days</StatNumber>
-          <StatHelpText>
+          {/* <StatHelpText>
             <StatArrow type="decrease" />
             20%
-          </StatHelpText>
+          </StatHelpText> */}
         </Stat>
         <Stat
           borderRadius="md"
@@ -70,13 +71,12 @@ export default function Statistics(props) {
         >
           <StatLabel>Leaves</StatLabel>
           <StatNumber>{props.remaining.hours} Hours</StatNumber>
-          <StatHelpText>
+          {/* <StatHelpText>
             <StatArrow type="decrease" />
             30%
-          </StatHelpText>
+          </StatHelpText> */}
         </Stat>
       </SimpleGrid>
     </Box>
   );
 }
-

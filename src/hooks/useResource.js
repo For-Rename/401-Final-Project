@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import useSWR from 'swr'
 import { useAuth } from '../contexts/auth'
@@ -5,6 +6,7 @@ import { useAuth } from '../contexts/auth'
 export default function useResource() {
 
     const { tokens, logout } = useAuth()
+
 
 
 
@@ -25,6 +27,7 @@ export default function useResource() {
         const tokensAccess = localStorage.getItem('tokens')
         console.log('tokensAccess',tokensAccess);
 
+
         return {
             headers: {
                 'Authorization': 'Bearer ' + tokensAccess
@@ -35,6 +38,7 @@ export default function useResource() {
     function handleError(error) {
         console.error(error);
         logout();
+
     }
 
     return {

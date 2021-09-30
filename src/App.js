@@ -19,23 +19,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import Home from "./pages/Home";
+import useSWR from "swr";
 
 // import Log from "./components/LoginForm";
 // import SignUp from './components/SignUp';
 
-
-
-  
-
-
-  
-
-
-
 function App() {
-
- 
-
   const { tokens, user, login, sum_days_vac } = useAuth();
   const [check, setCheck] = useState(false);
   const [performance, setPerformance] = useState({
@@ -48,7 +37,33 @@ function App() {
 
   const [leaves, setLeaves] = useState([]);
   const [remaining, setRemaining] = useState({ hours: 120, days: 21 });
+  const { data, error, mutate } = useSWR(
+    [
+      "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+      localStorage.getItem("tokens"),
+    ],
+    blogShowing
+  );
+  const { data1, error1, mutate1 } = useSWR(
+    [
+      "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+      localStorage.getItem("tokens"),
+    ],
+    leavesHandler
+  );
 
+  useEffect(() => {
+    console.log("hi");
+    if (!data) return;
+    setBlog(data);
+  }, [data]);
+
+  useEffect(() => {
+    if (!data1) return;
+    console.log("hi");
+    setLeaves(data1);
+    remaining_calc();
+  }, [data1]);
   function config() {
     const token = localStorage.getItem("tokens");
     console.log(token);
@@ -59,44 +74,42 @@ function App() {
     };
   }
 
-
-  // function blogInfoHandler(inform){
+  // function blogInfoHandler(inform) {
   //   // const response = await axios.post('backend_link', info,config());
   //   // setBlog(info => [...info, response.data])
   //   // console.log(inform);
-
   //   // console.log(blog);
-  //  }
+  // }
 
   async function blogShowing() {
-    if (!tokens) {
-      return;
-    }
     const response = await axios.get(
-      "http://localhost:8000/api/hrboost/blogs/",
+      "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+      config()
+    );
+    const data2 = await leavesHandler();
+    setLeaves(data2);
+    return response.data;
+  }
+  async function leavesHandler() {
+    const user_id = localStorage.getItem("user_id");
+    console.log("hi friom leaves handl");
+    const response = await axios.get(
+      "https://hrboost-back.herokuapp.com/api/hrboost/vacationsuser/" +
+        user_id +
+        "/",
       config()
     );
     console.log(response.data);
-    setBlog((info) => [...info, response.data[0]]);
-  }
-  async function leavesHandler() {
-    if (!tokens) {
-      return;
-    }
-    const response = await axios.get(
-      "http://127.0.0.1:8000/api/hrboost/vacations/" + user.id + "/",
-      config()
-    );
-    console.log(response.data[0]);
-    if (!tokens) {
-      return;
-    }
 
-    const obj = {
-      leaving_hours: response.data[0].num_hours,
-      leaving_days: response.data[0].num_days,
-    };
-    setLeaves((info) => [...info, obj]);
+    // hours=0
+    // days=0
+    // response.data.map(item)
+
+    // const obj = {
+    //   leaving_hours: response.data[0].num_hours,
+    //   leaving_days: response.data[0].num_days,
+    // };
+    return response.data;
   }
 
   function showingModel() {
@@ -113,8 +126,8 @@ function App() {
     // if (!tokens) {
     //   return;
     // }
-    await axios.post(
-      "http://localhost:8000/api/hrboost/blogs/",
+    const response = await axios.post(
+      "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
       inform,
       config()
     );
@@ -122,7 +135,15 @@ function App() {
     // console.log(inform);
 
     // setBlog((info) => [...info, inform]);
-    blogShowing();
+    // if (!tokens) {
+    //   return;
+    // }
+    // const response = await axios.get(
+    //   "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+    //   config()
+    // );
+    console.log(response.data);
+    setBlog((info) => [...info, response.data]);
     // console.log(blog);
   }
   async function performanceHandler() {
@@ -130,7 +151,9 @@ function App() {
       return;
     }
     const response = await axios.get(
-      "http://localhost:8000/api/hrboost/userinfo/" + user.id + "/",
+      "https://hrboost-back.herokuapp.com/api/hrboost/userinfo/" +
+        user.id +
+        "/",
       config()
     );
     console.log(response.data);
@@ -142,7 +165,9 @@ function App() {
   }
 
   function performance_percentage() {
-    const total = performance.evaluation - performance.prev_evaluation;
+    const userinfo = JSON.parse(localStorage.getItem("userinfo"));
+    const total =
+      Number(userinfo?.evaluation) - Number(userinfo?.pre_evaluation);
 
     console.log(performance);
     setPerformancePercentage(total);
@@ -150,40 +175,33 @@ function App() {
   useEffect(() => {
     performance_percentage();
 
+    performanceHandler();
+  }, [performance]);
 
-   
-    performanceHandler()
-    
-   },[performance])
-
-   useEffect(()=>{
-   
-   
-    performanceHandler()
-    
-   },[])
-   
-  
-
-
-  
-
+  // useEffect(() => {
+  //   performanceHandler();
+  // }, []);
 
   function remaining_calc() {
+    console.log("in");
     let sum_hours = 0;
     let sum_days = 0;
+    console.log("leaves", leaves);
     for (let y = 0; y < leaves.length; y++) {
-      sum_hours = sum_hours + leaves[y].leaving_hours;
-      sum_days = sum_days + leaves[y].leaving_days;
+      sum_hours = sum_hours + leaves[y].num_hours;
+      sum_days = sum_days + leaves[y].num_days;
     }
+    console.log("sum_hours", sum_hours);
+    console.log("sum_days", sum_days);
     const total = { hours: 20 - sum_hours, days: 21 - sum_days };
-    console.log(performance);
+    console.log("total", total);
+
     setRemaining(total);
   }
   useEffect(() => {
     // leavesHandler();
     remaining_calc();
-  }, [leaves]);
+  }, [leaves, data1]);
 
   const submitEvent = (event) => {
     event.preventDefault();
@@ -191,12 +209,11 @@ function App() {
     let password = event.target.password.value;
     login(userName, password);
 
-
     setCheck(true);
     localStorage.setItem("rememberMe", userName);
 
     performanceHandler();
-    blogShowing();
+    blogInfoHandler();
     leavesHandler();
   };
   useEffect(() => {
@@ -204,10 +221,11 @@ function App() {
     if (rememberMe) {
       setCheck(true);
     }
-  }, []);
+  }, [data1]);
 
   return (
     <>
+      {data1 && console.log("got it")}
       {check ? (
         <Box>
           <Router>
@@ -225,7 +243,7 @@ function App() {
                     model={model}
                     hidingModel={hidingModel}
                     leavesHandler={leavesHandler}
-                    blogShowing={blogShowing}
+                    // blogShowing={blogShowing}
                   />
                 </Route>
                 <Route exact path="/profile">
