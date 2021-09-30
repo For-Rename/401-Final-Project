@@ -175,12 +175,7 @@ export default function Profile() {
 
       <p>pre_evaluation:{data.pre_evaluation}</p> */}
 
-      <p>pre_evaluation:{data.pre_evaluation}</p>
-
-      <button onClick={Update}> Update</button>
-      {check && (
-        <UpdateProfile update={setData} check={setCheck} userinfo={data} />
-      )}
+      {/* <button onClick={Update}> Update</button> */}
     </>
   );
 }
