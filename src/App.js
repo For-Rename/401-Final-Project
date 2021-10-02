@@ -39,14 +39,14 @@ function App() {
   const [remaining, setRemaining] = useState({ hours: 120, days: 21 });
   const { data, error, mutate } = useSWR(
     [
-      "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+      "http://localhost:8000/api/hrboost/blogs/",
       localStorage.getItem("tokens"),
     ],
     blogShowing
   );
   const { data1, error1, mutate1 } = useSWR(
     [
-      "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+      "http://localhost:8000/api/hrboost/blogs/",
       localStorage.getItem("tokens"),
     ],
     leavesHandler
@@ -83,7 +83,7 @@ function App() {
 
   async function blogShowing() {
     const response = await axios.get(
-      "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+      "http://localhost:8000/api/hrboost/blogs/",
       config()
     );
     const data2 = await leavesHandler();
@@ -92,23 +92,11 @@ function App() {
   }
   async function leavesHandler() {
     const user_id = localStorage.getItem("user_id");
-    console.log("hi friom leaves handl");
     const response = await axios.get(
-      "https://hrboost-back.herokuapp.com/api/hrboost/vacationsuser/" +
-        user_id +
-        "/",
+      "http://localhost:8000/api/hrboost/vacationsuser/" + user_id + "/",
       config()
     );
-    console.log(response.data);
 
-    // hours=0
-    // days=0
-    // response.data.map(item)
-
-    // const obj = {
-    //   leaving_hours: response.data[0].num_hours,
-    //   leaving_days: response.data[0].num_days,
-    // };
     return response.data;
   }
 
@@ -123,11 +111,9 @@ function App() {
     const token = localStorage.getItem("tokens");
     console.log("token ", token);
     console.log("from blog handler", inform);
-    // if (!tokens) {
-    //   return;
-    // }
+
     const response = await axios.post(
-      "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+      "http://localhost:8000/api/hrboost/blogs/",
       inform,
       config()
     );
@@ -139,7 +125,7 @@ function App() {
     //   return;
     // }
     // const response = await axios.get(
-    //   "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
+    //   "http://localhost:8000/api/hrboost/blogs/",
     //   config()
     // );
     console.log(response.data);
@@ -151,9 +137,7 @@ function App() {
       return;
     }
     const response = await axios.get(
-      "https://hrboost-back.herokuapp.com/api/hrboost/userinfo/" +
-        user.id +
-        "/",
+      "http://localhost:8000/api/hrboost/userinfo/" + user.id + "/",
       config()
     );
     console.log(response.data);

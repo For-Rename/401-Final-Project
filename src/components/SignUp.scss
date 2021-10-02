@@ -1,4 +1,4 @@
-$yellow: #f5ba1a;
+$green: rgb(72, 187, 120);
 $black: #000000;
 $grey: #cccccc;
 
@@ -30,7 +30,7 @@ body {
   margin: 8% auto 0;
   position: relative;
   z-index: 1;
-  border-top: 5px solid $yellow;
+  border-top: 5px solid $green;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -123,11 +123,11 @@ body {
       -webkit-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
       -moz-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
       box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
-      border: 1px solid $yellow;
+      border: 1px solid $green;
       background: #fafafa;
     }
     &[type="submit"] {
-      background: $yellow;
+      background: rgb(72, 187, 120);
       height: 35px;
       line-height: 35px;
       width: 100%;
@@ -142,10 +142,10 @@ body {
       -ms-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
       &:hover {
-        background: darken($yellow, 7%);
+        background: darken($grey, 7%);
       }
       &:focus {
-        background: darken($yellow, 7%);
+        background: green;
       }
     }
     &[type="checkbox"],
@@ -259,9 +259,9 @@ body {
   z-index: 1;
   text-align: center;
   padding: 15px;
-  color: $yellow;
+  color: $green;
   a {
-    color: darken($yellow, 7%);
+    color: darken($green, 7%);
   }
 }
 @-webkit-keyframes check {

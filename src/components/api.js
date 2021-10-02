@@ -1,7 +1,8 @@
 import axios from "axios";
+
+import { Redirect } from "react-router-dom";
 // import jwt from "jsonwebtoken";
-export const apiUrl =
-  "https://hrboost-back.herokuapp.com/api/hrboost/attendancelist/";
+export const apiUrl = "http://localhost:8000/api/hrboost/attendancelist/";
 export class Attendances {
   constructor(info) {
     this.user_id = info.user_id;
@@ -19,11 +20,11 @@ export class Attendances {
 }
 // get a JSON Web Token from server
 export async function getToken(values) {
-  const url = "https://hrboost-back.herokuapp.com/api/token/";
+  const url = "http://localhost:8000/api/token/";
   // console.log(values);
   const response = await axios.post(url, values);
   // console.log(response);
-  const refreshUrl = "https://hrboost-back.herokuapp.com/api/token/refresh";
+  const refreshUrl = "http://localhost:8000/api/token/refresh";
   const refreshResponse = await axios.post(refreshUrl, {
     refresh: response.data.refresh,
   });
@@ -53,14 +54,32 @@ export async function fetchAttendance(url) {
   // console.log(attendances);
   return attendances;
 }
+export async function createNewUser(obj, userAccount) {
+  const config = makeConfig();
+
+  const newAccount = await axios.post(
+    "http://localhost:8000/api/register/",
+    userAccount,
+    config
+  );
+
+  if (newAccount) {
+    const userInfo = await axios.post(
+      " http://localhost:8000/api/hrboost/users/",
+      obj,
+      config
+    );
+    if (userInfo && newAccount) {
+      return true;
+    } else return false;
+  }
+}
 export async function postAttendance(values) {
   const config = makeConfig();
   const user_id = JSON.parse(localStorage.getItem("userinfo"));
   console.log(user_id["id"]);
   const lastattendance = await axios.get(
-    "https://hrboost-back.herokuapp.com/api/hrboost/lastattendance/" +
-      user_id["id"] +
-      "/",
+    "http://localhost:8000/api/hrboost/lastattendance/" + user_id["id"] + "/",
     config
   );
   console.log("lastattendance", lastattendance.data[0]);
@@ -91,7 +110,7 @@ export async function postAttendance(values) {
     // console.log(body);
 
     const response = await axios.put(
-      "https://hrboost-back.herokuapp.com/api/hrboost/attendanceupdate/" +
+      "http://localhost:8000/api/hrboost/attendanceupdate/" +
         lastattendance.data[0].id +
         "/",
       body,
