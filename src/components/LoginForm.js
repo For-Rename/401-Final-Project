@@ -42,6 +42,8 @@ const avatars = [
   },
 ];
 export default function LoginForm(props) {
+
+  // Logging the user into the application 
   return (
     <>
       <Box position={"relative"} padding={"5"}>

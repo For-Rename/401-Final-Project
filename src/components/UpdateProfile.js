@@ -25,6 +25,9 @@ export default function UpdateProfile({ update, check, userinfo }) {
   console.log("user check", user);
 
   function onAdd(event) {
+
+    // Updating the user information
+    // Argument : The input from the user for the update form
     event.preventDefault();
     const user_info_id = JSON.parse(localStorage.getItem("userinfo"));
 

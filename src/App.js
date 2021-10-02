@@ -82,6 +82,9 @@ function App() {
   // }
 
   async function blogShowing() {
+    // Get all the blogs created by all users, by making get request to the blogs endpoint
+    // Arguments: None
+    
     const response = await axios.get(
       "https://hrboost-back.herokuapp.com/api/hrboost/blogs/",
       config()
@@ -91,6 +94,8 @@ function App() {
     return response.data;
   }
   async function leavesHandler() {
+    // Get all the leaves requested by a specific user
+    // Arguments: None
     const user_id = localStorage.getItem("user_id");
     console.log("hi friom leaves handl");
     const response = await axios.get(
@@ -120,6 +125,8 @@ function App() {
   }
 
   async function blogInfoHandler(inform) {
+    // Create a blog by specific user 
+    // Argument: Information needed for the blog 
     const token = localStorage.getItem("tokens");
     console.log("token ", token);
     console.log("from blog handler", inform);
@@ -147,6 +154,8 @@ function App() {
     // console.log(blog);
   }
   async function performanceHandler() {
+    // Getting the current and previous evaluation for a specific user
+    // Arguments ; None
     if (!tokens) {
       return;
     }
@@ -165,6 +174,8 @@ function App() {
   }
 
   function performance_percentage() {
+    // Calculating the performance percentage for the user
+    // Argument : None
     const userinfo = JSON.parse(localStorage.getItem("userinfo"));
     const total =
       Number(userinfo?.evaluation) - Number(userinfo?.pre_evaluation);
@@ -183,6 +194,8 @@ function App() {
   // }, []);
 
   function remaining_calc() {
+    // Calculating the remaining leaving hours and days that user can request
+    // Argument : None
     console.log("in");
     let sum_hours = 0;
     let sum_days = 0;
@@ -204,6 +217,8 @@ function App() {
   }, [leaves, data1]);
 
   const submitEvent = (event) => {
+    // Logging the user to the application using user credentials 
+    // Argument: The user credentials
     event.preventDefault();
     let userName = event.target.user.value;
     let password = event.target.password.value;
