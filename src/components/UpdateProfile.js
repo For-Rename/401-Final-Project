@@ -16,8 +16,7 @@ import {
   Heading,
   Text,
   useColorModeValue,
-} from "@chakra-ui/react"
-
+} from "@chakra-ui/react";
 
 export default function UpdateProfile({ update, check, userinfo }) {
   const { updateResource } = useResource();
@@ -74,65 +73,73 @@ export default function UpdateProfile({ update, check, userinfo }) {
             </Text>
           </Stack>
           <form onSubmit={onAdd}>
-          <FormControl id="first-name" isRequired>
-            <FormLabel>Employee image</FormLabel>
-            <Input type="i"
-              autocomplete="false"
-              name="i"
-              placeholder="image"
-              defaultValue={userinfo.image}
-              required />
-            <FormLabel>Birthday</FormLabel>
-            <Input type="i"
-              type="date"
-              defaultValue={userinfo.birth_date}
-              autocomplete="false"
-              name="birthday" />
-            <FormLabel>Job Title</FormLabel>
-            <Input type="text"
-              defaultValue={userinfo.job_title}
-              autocomplete="false"
-              name="dep" />
-            <FormLabel>Address</FormLabel>
-            <Input type="text"
-              defaultValue={userinfo.address}
-              name="address" />
-            <FormLabel>Phone Number</FormLabel>
-            <Input type="tel"
-              placeholder="phone number"
-              name="phone"
-              defaultValue={userinfo.phone_num}
-              pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" />
+            <FormControl id="first-name" isRequired>
+              <FormLabel>Employee image</FormLabel>
+              <Input
+                type="file"
+                autocomplete="false"
+                name="i"
+                placeholder="image"
+                defaultValue={userinfo.image}
+                required
+              />
+              <FormLabel>Birthday</FormLabel>
+              <Input
+                type="date"
+                defaultValue={userinfo.birth_date}
+                autocomplete="false"
+                name="birthday"
+              />
+              <FormLabel>Job Title</FormLabel>
+              <Input
+                type="text"
+                defaultValue={userinfo.job_title}
+                autocomplete="false"
+                name="dep"
+              />
+              <FormLabel>Address</FormLabel>
+              <Input
+                type="text"
+                defaultValue={userinfo.address}
+                name="address"
+              />
+              <FormLabel>Phone Number</FormLabel>
+              <Input
+                type="tel"
+                placeholder="phone number"
+                name="phone"
+                defaultValue={userinfo.phone_num}
+                pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+              />
 
-            <FormLabel as="legend">social Status</FormLabel>
-            <RadioGroup defaultValue="Itachi">
-              <HStack spacing="24px">
-                <Radio value="Single">Single</Radio>
-                <Radio value="Married">Married</Radio>
-              </HStack>
-            </RadioGroup>
-            <FormLabel as="legend">Gender</FormLabel>
-            <RadioGroup defaultValue="Itachi">
-              <HStack spacing="24px">
-                <Radio value="Male">Male</Radio>
-                <Radio value="Female">Female</Radio>
-              </HStack>
-            </RadioGroup>
-          </FormControl>
-          <Button
-            mt={4}
-            colorScheme="teal"
-            // onSubmit={onAdd}
-            type="submit"
-          >
-            Submit
-          </Button>
+              <FormLabel as="legend">social Status</FormLabel>
+              <RadioGroup defaultValue={userinfo.social_status}>
+                <HStack spacing="24px">
+                  <Radio value="Single">Single</Radio>
+                  <Radio value="Married">Married</Radio>
+                </HStack>
+              </RadioGroup>
+              <FormLabel as="legend">Gender</FormLabel>
+              <RadioGroup defaultValue={userinfo.gender}>
+                <HStack spacing="24px">
+                  <Radio value="Male">Male</Radio>
+                  <Radio value="Female">Female</Radio>
+                </HStack>
+              </RadioGroup>
+            </FormControl>
+            <Button
+              mt={4}
+              colorScheme="teal"
+              // onSubmit={onAdd}
+              type="submit"
+            >
+              Update
+            </Button>
           </form>
-          </Stack>
+        </Stack>
+      </Flex>
 
-        </Flex>
-
-        {/* <div class="form_wrapper" onSubmit={onAdd}>
+      {/* <div class="form_wrapper" onSubmit={onAdd}>
         <div class="form_container">
         <div class="row clearfix">
         <div class="">
@@ -218,5 +225,5 @@ export default function UpdateProfile({ update, check, userinfo }) {
         </div>
       </div> */}
     </dev>
-      );
+  );
 }

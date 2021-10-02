@@ -158,8 +158,8 @@ function App() {
     );
     console.log(response.data);
     const per = {
-      evaluation: response.data[0].evaluation,
-      prev_evaluation: response.data[0].pre_evaluation,
+      evaluation: response.data.evaluation,
+      prev_evaluation: response.data.pre_evaluation,
     };
     setPerformance(per);
   }
@@ -169,7 +169,7 @@ function App() {
     const total =
       Number(userinfo?.evaluation) - Number(userinfo?.pre_evaluation);
 
-    console.log(performance);
+    console.log(total);
     setPerformancePercentage(total);
   }
   useEffect(() => {
