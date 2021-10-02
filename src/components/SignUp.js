@@ -1,20 +1,27 @@
 import "./SignUp.scss";
-import useResource from "../hooks/useResource";
+// import useResource from "../hooks/useResource";
 import React, { useState } from "react";
 import UserInfoForm from "./UserInfoForm";
+
 export default function SignUp() {
-  const { createResource } = useResource();
+  //   const { createResource } = useResource();
 
   const [form, setForm] = useState(true);
+  const [userAccount, setUserAccount] = useState();
 
   function onCreate(event) {
     event.preventDefault();
 
     const obj = {
-      Name: event.target.User.value,
-      password: event.target.password1.value,
+      email: event.target.email.value,
+      first_name: event.target.first_name.value,
+      last_name: event.target.last_name.value,
+      username: event.target.user_name.value,
+      password: event.target.password.value,
     };
-    createResource(obj);
+
+    setUserAccount(obj);
+
     setForm(false);
   }
 
@@ -33,7 +40,7 @@ export default function SignUp() {
                   <div class="input_field">
                     <input
                       type="User Name"
-                      name="User"
+                      name="user_name"
                       autocomplete="false"
                       placeholder="User Name"
                       required
@@ -56,7 +63,7 @@ export default function SignUp() {
                         </span>
                         <input
                           type="text"
-                          name="name"
+                          name="first_name"
                           placeholder="First Name"
                         />
                       </div>
@@ -69,7 +76,7 @@ export default function SignUp() {
                         </span>
                         <input
                           type="text"
-                          name="name"
+                          name="last_name"
                           placeholder="Last Name"
                           required
                         />
@@ -79,29 +86,34 @@ export default function SignUp() {
                   <div class="input_field">
                     <input
                       type="password"
-                      name="password1"
+                      name="password"
                       autocomplete="false"
-                      placeholder="Confirm Password"
+                      placeholder="Password"
                       required
                     />
                   </div>
-                  <div class="input_field">
+                  {/* <div class="input_field">
                     <input
                       type="password"
                       name="password2"
                       autocomplete="false"
                       placeholder="Confirm Password"
-                      required
                     />
-                  </div>
-                  <input class="button" type="submit" value="Next" />
+                  </div> */}
+
+                  <input
+                    class="button"
+                    colorScheme="teal"
+                    type="submit"
+                    value="Next"
+                  />
                 </form>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <UserInfoForm />
+        <UserInfoForm userAccount={userAccount} />
       )}
     </>
   );

@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 // const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-const tokenUrl = "https://hrboost-back.herokuapp.com/api/token/";
+const tokenUrl = "http://localhost:8000/api/token/";
 const AuthContext = createContext();
 export function useAuth() {
   const auth = useContext(AuthContext);
@@ -14,9 +14,7 @@ async function leavesHandler(tokens, user) {
     return;
   }
   const response = await axios.get(
-    "https://hrboost-back.herokuapp.com/api/hrboost/vacationsuser/" +
-      user +
-      "/",
+    "http://localhost:8000/api/hrboost/vacationsuser/" + user + "/",
     makeConfig(tokens)
   );
   console.log(response.data);
@@ -54,18 +52,18 @@ export function AuthProvider(props) {
     };
     console.log(obj);
     const response = await axios.post(tokenUrl, obj);
-
+    console.log(response);
     const decodedAccess = jwt.decode(response.data.access);
     localStorage.setItem("tokens", response.data.access);
     localStorage.setItem("user_id", decodedAccess.user_id);
     const userinfo = await axios.get(
-      `https://hrboost-back.herokuapp.com/api/hrboost/userinfo/${decodedAccess.user_id}/`,
+      `http://localhost:8000/api/hrboost/userinfo/${decodedAccess.user_id}/`,
       makeConfig(response.data.access)
     );
-    localStorage.setItem("userinfo", JSON.stringify(userinfo.data[0]));
+    localStorage.setItem("userinfo", JSON.stringify(userinfo.data));
 
     const newState = {
-      tokens: response.data,
+      tokens: response.data[0],
       user: {
         username: decodedAccess.username,
         email: decodedAccess.email,

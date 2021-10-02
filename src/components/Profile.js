@@ -34,7 +34,7 @@ export default function Profile() {
   useEffect(() => {
     // const id = localStorage.getItem("id");
     // axios
-    //   .get(`https://hrboost-back.herokuapp.com/api/hrboost/userinfo/${id}/`, config())
+    //   .get(`http://localhost:8000/api/hrboost/userinfo/${id}/`, config())
     //   .then((res) => {
 
     // setData(res.data[1]);
@@ -52,7 +52,7 @@ export default function Profile() {
   }, []);
 
   //     axios
-  //       .get(`https://hrboost-back.herokuapp.com/api/hrboost/userinfo/${userinfo}/`, config())
+  //       .get(`http://localhost:8000/api/hrboost/userinfo/${userinfo}/`, config())
   //       .then((res) => {
   //         setData(res.data[0]);
   //       });
@@ -68,100 +68,109 @@ export default function Profile() {
 
   const Update = () => {
     setCheck(true);
+    // console.log(check);
   };
 
   return (
     <>
-      <Box p={4}>
-        <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
-          <Heading fontSize={"3xl"}>This is Your Informations</Heading>
-        </Stack>
+      {!check ? (
+        <>
+          <Box p={4}>
+            <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
+              <Heading fontSize={"3xl"}>This is Your Informations</Heading>
+            </Stack>
 
-        <Container maxW={"6xl"} mt={10}>
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
-            <HStack key={data.birth_date} align={"top"}>
-              <Box color={"green.400"} px={2}>
-                <Icon as={CheckIcon} />
-              </Box>
-              <VStack>
-                <Text fontWeight={600}>Your address </Text>
-                <Text color={"gray.600"}>{data.address}</Text>
-              </VStack>
-            </HStack>
-            <HStack key={data.phone_num} align={"top"}>
-              <Box color={"green.400"} px={2}>
-                <Icon as={CheckIcon} />
-              </Box>
-              <VStack align={"start"}>
-                <Text fontWeight={600}>Your Phone Number </Text>
+            <Container maxW={"6xl"} mt={10}>
+              <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
+                <HStack key={data.birth_date} align={"top"}>
+                  <Box color={"green.400"} px={2}>
+                    <Icon as={CheckIcon} />
+                  </Box>
+                  <VStack>
+                    <Text fontWeight={600}>Your address </Text>
+                    <Text color={"gray.600"}>{data.address}</Text>
+                  </VStack>
+                </HStack>
+                <HStack key={data.phone_num} align={"top"}>
+                  <Box color={"green.400"} px={2}>
+                    <Icon as={CheckIcon} />
+                  </Box>
+                  <VStack align={"start"}>
+                    <Text fontWeight={600}>Your Phone Number </Text>
 
-                <Text color={"gray.600"}>{data.phone_num}</Text>
-              </VStack>
-            </HStack>
-            <HStack key={data.birth_date} align={"top"}>
-              <Box color={"green.400"} px={2}>
-                <Icon as={CheckIcon} />
-              </Box>
-              <VStack>
-                <Text fontWeight={600}> Your Social Status :</Text>
-                <Text color={"gray.600"}> {data.social_status} </Text>
-              </VStack>
-            </HStack>
-            <HStack key={data.birth_date} align={"top"}>
-              <Box color={"green.400"} px={2}>
-                <Icon as={CheckIcon} />
-              </Box>
-              <VStack>
-                <Text fontWeight={600}>Your Job Title : </Text>
-                <Text color={"gray.600"}> {data.job_title} </Text>
-              </VStack>
-            </HStack>
-            <HStack key={data.birth_date} align={"top"}>
-              <Box color={"green.400"} px={2}>
-                <Icon as={CheckIcon} />
-              </Box>
-              <VStack>
-                <Text fontWeight={600}>Your available_leave_days : </Text>
-                <Text color={"gray.600"}> {data.available_leave_days} </Text>
-              </VStack>
-            </HStack>
-            <HStack key={data.birth_date} align={"top"}>
-              <Box color={"green.400"} px={2}>
-                <Icon as={CheckIcon} />
-              </Box>
-              <VStack>
-                <Text fontWeight={600}>Your Current Evaluation : </Text>
-                <Text color={"gray.600"}> {data.evaluation} </Text>
-              </VStack>
-            </HStack>
-            <HStack key={data.birth_date} align={"top"}>
-              <Box color={"green.400"} px={2}>
-                <Icon as={CheckIcon} />
-              </Box>
-              <VStack>
-                <Text fontWeight={600}>Your Previous Evavluation </Text>
-                <Text color={"gray.600"}> {data.pre_evaluation} </Text>
-              </VStack>
-            </HStack>
-          </SimpleGrid>
-        </Container>
-      </Box>
-      {check && (
+                    <Text color={"gray.600"}>{data.phone_num}</Text>
+                  </VStack>
+                </HStack>
+                <HStack key={data.birth_date} align={"top"}>
+                  <Box color={"green.400"} px={2}>
+                    <Icon as={CheckIcon} />
+                  </Box>
+                  <VStack>
+                    <Text fontWeight={600}> Your Social Status :</Text>
+                    <Text color={"gray.600"}> {data.social_status} </Text>
+                  </VStack>
+                </HStack>
+                <HStack key={data.birth_date} align={"top"}>
+                  <Box color={"green.400"} px={2}>
+                    <Icon as={CheckIcon} />
+                  </Box>
+                  <VStack>
+                    <Text fontWeight={600}>Your Job Title : </Text>
+                    <Text color={"gray.600"}> {data.job_title} </Text>
+                  </VStack>
+                </HStack>
+                <HStack key={data.birth_date} align={"top"}>
+                  <Box color={"green.400"} px={2}>
+                    <Icon as={CheckIcon} />
+                  </Box>
+                  <VStack>
+                    <Text fontWeight={600}>Your available_leave_days : </Text>
+                    <Text color={"gray.600"}>
+                      {" "}
+                      {data.available_leave_days}{" "}
+                    </Text>
+                  </VStack>
+                </HStack>
+                <HStack key={data.birth_date} align={"top"}>
+                  <Box color={"green.400"} px={2}>
+                    <Icon as={CheckIcon} />
+                  </Box>
+                  <VStack>
+                    <Text fontWeight={600}>Your Current Evaluation : </Text>
+                    <Text color={"gray.600"}> {data.evaluation} </Text>
+                  </VStack>
+                </HStack>
+                <HStack key={data.birth_date} align={"top"}>
+                  <Box color={"green.400"} px={2}>
+                    <Icon as={CheckIcon} />
+                  </Box>
+                  <VStack>
+                    <Text fontWeight={600}>Your Previous Evavluation </Text>
+                    <Text color={"gray.600"}> {data.pre_evaluation} </Text>
+                  </VStack>
+                </HStack>
+              </SimpleGrid>
+            </Container>
+          </Box>
+
+          <Button
+            bg={"blue.400"}
+            color={"white"}
+            _hover={{
+              bg: "blue.500",
+            }}
+            onClick={Update}
+            // width={'full'}
+            width={"auto"}
+            margin={"20"}
+          >
+            Update
+          </Button>
+        </>
+      ) : (
         <UpdateProfile update={setData} check={setCheck} userinfo={data} />
       )}
-      <Button
-        bg={"blue.400"}
-        color={"white"}
-        _hover={{
-          bg: "blue.500",
-        }}
-        onClick={Update}
-        // width={'full'}
-        width={"auto"}
-        margin={"20"}
-      >
-        Update
-      </Button>
+
       {/* <p> birth date :{data.birth_date}</p> 
 
       <p> birth date :{data.birth_date}</p>

@@ -58,11 +58,7 @@ export default function Leave(props) {
       };
     }
     axios
-      .post(
-        `https://hrboost-back.herokuapp.com/api/hrboost/vacations/`,
-        obj,
-        config()
-      )
+      .post(`http://localhost:8000/api/hrboost/vacations/`, obj, config())
       .then((res) => {
         console.log(res);
       })
