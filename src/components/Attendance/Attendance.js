@@ -29,6 +29,8 @@ export default function CDate() {
   if (!data) return <h2>Loading...</h2>;
   // const [Attendance, setAttendance] = useState([]);
   async function createHandler(event) {
+    // Regestring the attendance for the user , by checking in and out
+    // Argument : User input for checking option
     event.preventDefault();
     let dt = new Date().toISOString();
     // console.log(dt);

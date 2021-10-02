@@ -87,6 +87,9 @@ function Card(props) {
 }
 
 export default function Blog(props) {
+  
+  // Rendering all the Blogs created by all of the users.
+
   return (
     <Flex
       textAlign={"center"}

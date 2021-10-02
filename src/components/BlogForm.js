@@ -16,8 +16,12 @@ import {
 import { useAuth } from "../contexts/auth";
 
 export default function BlogForm(props) {
+  
   const { tokens, user, login } = useAuth();
+ 
   function formHandler(event) {
+     // Taking the information needed for creating a blog from the user
+     // Argument: input from the form
     event.preventDefault();
     console.log(user);
     const user_id = JSON.parse(localStorage.getItem("userinfo"));

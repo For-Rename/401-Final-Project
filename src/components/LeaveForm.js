@@ -30,6 +30,8 @@ export default function Leave(props) {
   const id = localStorage.getItem("user_id");
   console.log(id);
   const onSubmit = (result) => {
+    // Taking all the information needed for requesting a leave 
+    // Argument : Input from the leave form 
     console.log(result);
     const obj = {
       num_hours: 0,

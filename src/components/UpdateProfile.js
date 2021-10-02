@@ -21,6 +21,9 @@ import {
 export default function UpdateProfile(props) {
   const userinfo = JSON.parse(localStorage.getItem("userinfo"));
   function onAdd(event) {
+
+    // Updating the user information
+    // Argument : The input from the user for the update form
     event.preventDefault();
 
     const id = localStorage.getItem("user_id");
