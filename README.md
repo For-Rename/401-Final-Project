@@ -18,7 +18,7 @@ A human resource management system that helps employees starting their journey a
 ## deployment  
 - deploy link : https://hrb-oost-front-end.vercel.app/ 
 
-- defult acount :
+- default account  :
 
      Ueser name : ali
 
