@@ -16,11 +16,12 @@ A human resource management system that helps employees starting their journey a
     HRBoost
 
 ## deployment  
-- deploy link : https://hrb-oost-front-end.vercel.app/ 
+
+- deploy link : https://hrb-oost-front-end.vercel.app/
 
 - default account  :
 
-     Ueser name : ali
+     User name : ali
 
      Password : 123456
 
