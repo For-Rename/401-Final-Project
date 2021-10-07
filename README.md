@@ -15,6 +15,15 @@ A human resource management system that helps employees starting their journey a
 
     HRBoost
 
+## deployment  
+- deploy link : https://hrb-oost-front-end.vercel.app/ 
+
+- defult acount :
+
+     Ueser name : ali
+
+     Password : 123456
+
 ## PM Tools
 
 [PM](https://github.com/orgs/Next-Reme/projects/1)
